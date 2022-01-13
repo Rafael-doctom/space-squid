@@ -1,8 +1,8 @@
-import component from "../../base/component.js";
-import soundComponent from "../../base/soundComponent.js";
+import Component from "../../base/Component.js";
+import SoundComponent from "../../base/SoundComponent.js";
 import detectColision from "../../base/detectColision.js";
 
-import Explosion from "../other/explosion.js";
+import Explosion from "../other/Explosion.js";
 
 const airshipImgPath = {
   idle: "../../src/assets/img/enemy/airship/idle.png",
@@ -10,7 +10,7 @@ const airshipImgPath = {
 };
 
 function Airship(x = 940, y = 150) {
-  component.call(this, 120, 80, airshipImgPath, x, y, "image");
+  Component.call(this, 120, 80, airshipImgPath, x, y, "image");
 
   this.speed = 15;
   this.life = 8;
@@ -20,7 +20,7 @@ function Airship(x = 940, y = 150) {
   this.isMoving = false;
   this.direction = "left";
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new soundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
 
   this.render = function() {   
     if (this.isDead && this.deathExplosion.duration > 0) {

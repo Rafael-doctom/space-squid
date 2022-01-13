@@ -1,10 +1,10 @@
-import component from "../base/component.js";
+import Component from "../base/Component.js";
 import Text from "../base/Text.js";
 
 const gameOverImgPath = {idle: "../src/assets/img/screens/gameOver.png"};
 
 function GameOver() {
-  component.call(this,  
+  Component.call(this,  
     window.innerWidth,
     window.innerHeight,
     gameOverImgPath,

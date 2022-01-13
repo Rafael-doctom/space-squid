@@ -1,10 +1,10 @@
-import component from "../base/component.js";
+import Component from "../base/Component.js";
 import Text from "../base/Text.js";
 
 const cursorImgPath = {idle: "../src/assets/img/other/cursor.png"};
 
 function Title() {
-  component.call(
+  Component.call(
     this,
     window.innerWidth,
     window.innerHeight,
@@ -14,7 +14,7 @@ function Title() {
 
   this.heading = new Text("140px", "#94e344", "center");
   this.menu = new Text("60px", "#e2f3e4", "center");
-  this.cursor = new component(40, 40, cursorImgPath, window.innerWidth / 3, 300, "image");
+  this.cursor = new Component(40, 40, cursorImgPath, window.innerWidth / 3, 300, "image");
   this.choice = "none";
   this.cursorY = 300;
   this.cursorDelay = false;

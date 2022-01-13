@@ -1,10 +1,10 @@
-import component from "../../base/component.js";
+import Component from "../../base/Component.js";
 import detectColision from "../../base/detectColision.js";
-import animation from "../../base/animation.js";
+import Animation from "../../base/Animation.js";
 
 import Bullet from "../other/Bullet.js";
-import soundComponent from "../../base/soundComponent.js";
-import Explosion from "../other/explosion.js";
+import SoundComponent from "../../base/SoundComponent.js";
+import Explosion from "../other/Explosion.js";
 
 const helicopterImgPath = {
   idle1: "../../src/assets/img/enemy/helicopter/idle1.png",
@@ -14,7 +14,7 @@ const helicopterImgPath = {
 };
 
 function Helicopter(x = 940, y = 150) {
-  component.call(this, 120, 80, helicopterImgPath, x, y, "image");
+  Component.call(this, 120, 80, helicopterImgPath, x, y, "image");
 
   this.speed = 5;
   this.life = 16;
@@ -25,9 +25,9 @@ function Helicopter(x = 940, y = 150) {
   this.direction = "up"
   this.bullets = [];
   this.bulletDelay = 0;
-  this.idleAnimation = new animation(this, [0, 1, 2, 1], 2);
+  this.idleAnimation = new Animation(this, [0, 1, 2, 1], 2);
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new soundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   
   this.render = function() {   
     if (this.isDead && this.deathExplosion.duration > 0) {

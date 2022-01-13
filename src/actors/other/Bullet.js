@@ -1,9 +1,9 @@
-import component from "../../base/component.js";
+import Component from "../../base/Component.js";
 
 const shotImgPath = {idle: "../src/assets/img/attacks/shot.png"};
 
 function Bullet(damage, width = 40, height = 20, x = 0, y = 0) {
-  component.call(this, width, height, shotImgPath, x, y, "image")
+  Component.call(this, width, height, shotImgPath, x, y, "image")
 
   this.damage = damage;
   this.speed = 20;

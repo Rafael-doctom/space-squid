@@ -1,4 +1,4 @@
-import component from "../../base/component.js";
+import Component from "../../base/Component.js";
 
 const healthBarImgPath = {
   l8: "../src/assets/img/healthBar/eight.png",
@@ -9,7 +9,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  component.call(this, 60, 180, healthBarImgPath, 25, 25, "image");
+  Component.call(this, 60, 180, healthBarImgPath, 25, 25, "image");
 
   this.render = function() {
     this.newPos();
