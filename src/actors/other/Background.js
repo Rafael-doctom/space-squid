@@ -6,8 +6,8 @@ const backgroundImgPath = {idle: "../src/assets/img/background/sky2.png"};
 function Background() {
   Component.call(
     this, 
-    window.innerWidth,
-    window.innerHeight,
+    myGameArea.width,
+    myGameArea.height,
     backgroundImgPath,
     0, 0, "background"
   )

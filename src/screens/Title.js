@@ -6,15 +6,15 @@ const cursorImgPath = {idle: "../src/assets/img/other/cursor.png"};
 function Title() {
   Component.call(
     this,
-    window.innerWidth,
-    window.innerHeight,
+    myGameArea.width,
+    myGameArea.height,
     "#332c50",
     0, 0
   );
 
-  this.heading = new Text("140px", "#94e344", "center");
-  this.menu = new Text("60px", "#e2f3e4", "center");
-  this.cursor = new Component(40, 40, cursorImgPath, window.innerWidth / 3, 300, "image");
+  this.heading = new Text("120px", "#94e344", "center");
+  this.menu = new Text("40px", "#e2f3e4", "center");
+  this.cursor = new Component(40, 40, cursorImgPath, myGameArea.width / 3, 300, "image");
   this.choice = "none";
   this.cursorY = 300;
   this.cursorDelay = false;
@@ -25,10 +25,10 @@ function Title() {
   }
 
   this.write = function() {
-    this.heading.write("Space Squid", window.innerWidth / 2, 150);
-    this.menu.write("Start", window.innerWidth / 2, 300);
-    this.menu.write("Options", window.innerWidth / 2, 400);
-    this.menu.write("Credits", window.innerWidth / 2, 500);
+    this.heading.write("Space Squid", myGameArea.width / 2, 150);
+    this.menu.write("Start", myGameArea.width / 2, 300);
+    this.menu.write("Options", myGameArea.width / 2, 400);
+    this.menu.write("Credits", myGameArea.width / 2, 500);
 
     this.cursor.y = this.cursorY - this.cursor.height;
     this.cursor.update();

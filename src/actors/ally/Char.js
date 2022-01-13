@@ -17,7 +17,7 @@ const charImgPath = {
 }
 
 function Char() {
-  Component.call(this, 80, 80, charImgPath, 210, 180, "image");
+  Component.call(this, 60, 60, charImgPath, 210, 180, "image");
 
   this.speed = 5;
   this.life = 8;
@@ -56,7 +56,7 @@ function Char() {
     this.bullets = this.bullets.filter(bullet => !bullet.isDead);
 
     for (const bullet of this.bullets) {
-      if (bullet.x < window.innerWidth) {
+      if (bullet.x < myGameArea.width) {
         bullet.render();
       } else {
         bullet.isDead = true;
@@ -72,7 +72,7 @@ function Char() {
     if (this.bulletDelay == 0) {
       this.attackSound.play();
       this.isAttacking = true;
-      this.bullets.push(new Bullet(this.damage, 40, 20, this.x + 85, this.y + 25));
+      this.bullets.push(new Bullet(this.damage, 30, 15, this.x + 85, this.y + 25));
   
       for (const bullet of this.bullets) {
         bullet.move("right");
@@ -166,8 +166,8 @@ function Char() {
       this.x = 0;
       return; 
     }
-    if (this.x > window.innerWidth - 100) {
-      this.x = window.innerWidth - 100;
+    if (this.x > myGameArea.width - 100) {
+      this.x = myGameArea.width - 100;
       return;
     }  
     if (this.y < 0) {
@@ -175,8 +175,8 @@ function Char() {
       return;
     }
     
-    if (this.y > window.innerHeight - 100) {
-      this.y = window.innerHeight - 100;
+    if (this.y > myGameArea.height - 100) {
+      this.y = myGameArea.height - 100;
       return;
     }
   

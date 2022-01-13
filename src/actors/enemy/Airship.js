@@ -10,7 +10,7 @@ const airshipImgPath = {
 };
 
 function Airship(x = 940, y = 150) {
-  Component.call(this, 120, 80, airshipImgPath, x, y, "image");
+  Component.call(this, 100, 60, airshipImgPath, x, y, "image");
 
   this.speed = 15;
   this.life = 8;
