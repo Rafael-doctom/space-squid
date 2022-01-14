@@ -6,8 +6,6 @@ window.myGameArea = {
   start: function() {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    this.canvas.style.width = window.innerWidth + "px";
-    this.canvas.style.height = window.innerHeight + "px";
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   },

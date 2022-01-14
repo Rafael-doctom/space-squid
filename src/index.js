@@ -6,6 +6,10 @@ import level1 from "./levels/level1.js";
 
 let title = null;
 
+window.addEventListener("click", () => {
+  myGameArea.canvas.requestFullscreen();
+});
+
 function startGame() {
   myGameArea.start();
   title = new Title();
@@ -19,7 +23,7 @@ function updateGameArea() {
     title.movement(keyboardControl);
   }
 
-  //if (title.choice == "start")
+  if (title.choice == "start")
     level1();
 
   requestAnimationFrame(updateGameArea);
