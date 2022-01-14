@@ -1,7 +1,7 @@
 window.myGameArea = {
   canvas: document.createElement("canvas"),
   width: 1024,
-  height: 640,
+  height: 576,
 
   start: function() {
     this.canvas.width = this.width;
