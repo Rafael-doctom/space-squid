@@ -38,7 +38,6 @@ function SuperAirship(x = 940, y = 150) {
         this.deathExplosion.getCurrentPosition(this.x, this.y);
         this.deathExplosion.animation.animate();     
         this.deathExplosion.render();
-        this.deathExplosion.duration--;
       } else if (!this.isDead) {
         this.hitBox.upWing.getCurrentPosition(this.x + this.width - 240, this.y);
         this.hitBox.body.getCurrentPosition(this.x, this.y + 150);

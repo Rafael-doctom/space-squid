@@ -9,7 +9,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  Component.call(this, 50, 170, healthBarImgPath, 25, 25, "image");
+  Component.call(this, 48, 156, healthBarImgPath, 25, 25, "image");
 
   this.render = function() {
     this.newPos();

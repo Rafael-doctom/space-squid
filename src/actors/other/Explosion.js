@@ -16,6 +16,7 @@ function Explosion() {
   this.getCurrentPosition = function(x, y) {
     this.x = x;
     this.y = y;
+    this.duration--;
   }
 
   this.render = function() {

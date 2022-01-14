@@ -10,7 +10,7 @@ const airshipImgPath = {
 };
 
 function Airship(x = 940, y = 150) {
-  Component.call(this, 100, 60, airshipImgPath, x, y, "image");
+  Component.call(this, 92, 56, airshipImgPath, x, y, "image");
 
   this.speed = 15;
   this.life = 8;
@@ -27,7 +27,6 @@ function Airship(x = 940, y = 150) {
       this.deathExplosion.getCurrentPosition(this.x - this.width, this.y);
       this.deathExplosion.animation.animate();     
       this.deathExplosion.render();
-      this.deathExplosion.duration--;
     } else if (!this.isDead) {
       this.newPos();
       this.update();

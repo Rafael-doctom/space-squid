@@ -14,7 +14,7 @@ const helicopterImgPath = {
 };
 
 function Helicopter(x = 940, y = 150) {
-  Component.call(this, 100, 60, helicopterImgPath, x, y, "image");
+  Component.call(this, 92, 56, helicopterImgPath, x, y, "image");
 
   this.speed = 5;
   this.life = 16;
@@ -34,7 +34,6 @@ function Helicopter(x = 940, y = 150) {
       this.deathExplosion.getCurrentPosition(this.x, this.y);
       this.deathExplosion.animation.animate();     
       this.deathExplosion.render();
-      this.deathExplosion.duration--;
     } else if (!this.isDead) {
       this.idleAnimation.animate(!this.isDamaged, true);
       this.newPos();

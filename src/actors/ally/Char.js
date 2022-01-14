@@ -17,11 +17,11 @@ const charImgPath = {
 }
 
 function Char() {
-  Component.call(this, 60, 60, charImgPath, 210, 180, "image");
+  Component.call(this, 56, 56, charImgPath, 210, 180, "image");
 
   this.speed = 5;
   this.life = 8;
-  this.damage = 2;
+  this.damage = 1000;//2;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
@@ -105,7 +105,7 @@ function Char() {
     if (!this.isDamaged) {
       if (detectColision(this, object) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
-        this.life -= object.damage;
+        //this.life -= object.damage;
         healthBar.changeImg(this.life);
   
         if (this.life == 0)
