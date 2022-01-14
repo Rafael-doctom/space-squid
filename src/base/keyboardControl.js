@@ -15,6 +15,16 @@ const keyboardControl = {
     spacePressed: false
   },
 
+  initEvents: function() {
+    window.addEventListener('keydown', e => {
+      this.keyDownHandler(e);
+    });
+  
+    window.addEventListener('keyup', e => {
+      this.keyUpHandler(e);
+    });
+  },
+
   keyDownHandler: function(event) {
     if (event.keyCode == this.keysCode.space)
       this.keysPressed.spacePressed = true;

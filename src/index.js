@@ -9,15 +9,8 @@ let title = null;
 function startGame() {
   myGameArea.start();
   title = new Title();
+  keyboardControl.initEvents();
   updateGameArea();
-
-  window.addEventListener('keydown', function (e) {
-    keyboardControl.keyDownHandler(e);
-  });
-
-  window.addEventListener('keyup', function (e) {
-    keyboardControl.keyUpHandler(e);
-  });
 }
 
 function updateGameArea() {
@@ -26,7 +19,7 @@ function updateGameArea() {
     title.movement(keyboardControl);
   }
 
-  if (title.choice == "start")
+  //if (title.choice == "start")
     level1();
 
   requestAnimationFrame(updateGameArea);
