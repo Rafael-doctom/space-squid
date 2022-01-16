@@ -1,11 +1,13 @@
-import engine from "../../engine/engine.js";
+import engine from "../../../engine/engine.js";
+
+const imgPath = "../../src/assets/img/healthBar/";
 
 const healthBarImgPath = {
-  l8: "../src/assets/img/healthBar/eight.png",
-  l6: "../src/assets/img/healthBar/six.png",
-  l4: "../src/assets/img/healthBar/four.png",
-  l2: "../src/assets/img/healthBar/two.png",
-  l0: "../src/assets/img/healthBar/zero.png"
+  l8: `${imgPath}eight.png`,
+  l6: `${imgPath}six.png`,
+  l4: `${imgPath}four.png`,
+  l2: `${imgPath}two.png`,
+  l0: `${imgPath}zero.png`
 };
 
 function HealthBar() {

@@ -1,10 +1,12 @@
-import engine from "../../engine/engine.js";
+import engine from "../../../engine/engine.js";
+
+const imgPath = "../../../src/assets/img/effects/explosion/"
 
 const explosionImgPath = {
-  e1: "../../src/assets/img/effects/explosion/1.png",
-  e2: "../../src/assets/img/effects/explosion/2.png",
-  e3: "../../src/assets/img/effects/explosion/3.png",
-  e4: "../../src/assets/img/effects/explosion/4.png",
+  e1: `${imgPath}1.png`,
+  e2: `${imgPath}2.png`,
+  e3: `${imgPath}3.png`,
+  e4: `${imgPath}4.png`,
 }
 
 function Explosion() {

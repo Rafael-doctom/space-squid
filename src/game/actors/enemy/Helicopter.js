@@ -1,13 +1,15 @@
-import engine from "../../engine/engine.js"
+import engine from "../../../engine/engine.js"
 
 import Bullet from "../other/Bullet.js";
 import Explosion from "../other/Explosion.js";
 
+const imgPath = "../../src/assets/img/enemy/helicopter/";
+
 const helicopterImgPath = {
-  idle1: "../../src/assets/img/enemy/helicopter/idle1.png",
-  idle2: "../../src/assets/img/enemy/helicopter/idle2.png",
-  idle3: "../../src/assets/img/enemy/helicopter/idle3.png",
-  invisible: "../../src/assets/img/char/invisible.png"
+  idle1: `${imgPath}idle1.png`,
+  idle2: `${imgPath}idle2.png`,
+  idle3: `${imgPath}idle3.png`,
+  invisible: "../../../src/assets/img/char/invisible.png"
 };
 
 function Helicopter(x = 940, y = 150) {

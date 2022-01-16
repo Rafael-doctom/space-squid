@@ -1,6 +1,6 @@
-import engine from "../engine/engine.js";
+import engine from "../../engine/engine.js";
 
-const gameOverImgPath = {idle: "../src/assets/img/screens/gameOver.png"};
+const gameOverImgPath = {idle: "../../src/assets/img/screens/gameOver.png"};
 
 function GameOver() {
   engine.components.Component.call(this,  

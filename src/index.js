@@ -1,7 +1,7 @@
 import engine from "./engine/engine.js";
 
-import level1 from "./levels/level1.js";
-import Title from "./screens/Title.js";
+import level1 from "./game/levels/level1.js";
+import Title from "./UI/screens/Title.js";
 
 let title = null;
 

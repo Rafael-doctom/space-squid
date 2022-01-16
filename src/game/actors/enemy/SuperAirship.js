@@ -1,14 +1,16 @@
-import engine from "../../engine/engine.js";
+import engine from "../../../engine/engine.js";
 import Explosion from "../other/Explosion.js";
 
+const imgPath = "../../src/assets/img/enemy/superAirship/";
+
 const superAirshipImgPath = {
-  idle: "../../src/assets/img/enemy/superAirship/idle.png",
-  upWing: "../../src/assets/img/enemy/superAirship/upWing.png",
-  noWing: "../../src/assets/img/enemy/superAirship/noWing.png",
-  noLasers: "../../src/assets/img/enemy/superAirship/noLasers.png",
-  oneTurbine: "../../src/assets/img/enemy/superAirship/oneTurbine.png",
-  dead: "../../src/assets/img/enemy/superAirship/dead.png",
-  invisible: "../../src/assets/img/char/invisible.png"
+  idle: `${imgPath}idle.png`,
+  upWing: `${imgPath}upWing.png`,
+  noWing: `${imgPath}noWing.png`,
+  noLasers: `${imgPath}noLasers.png`,
+  oneTurbine: `${imgPath}oneTurbine.png`,
+  dead: `${imgPath}dead.png`,
+  invisible: "../../../src/assets/img/char/invisible.png"
 };
 
 function SuperAirship(x = 940, y = 150) {

@@ -1,4 +1,4 @@
-import engine from "../engine/engine.js";
+import engine from "../../engine/engine.js";
 
 import Background from "../actors/other/Background.js";
 import Char from "../actors/ally/Char.js";
@@ -10,7 +10,7 @@ import HealthBar from "../actors/other/HealthBar.js";
 import EnemyList from "../other/EnemyList.js";
 import WaveList from "../other/waveList.js";
 
-import GameOver from "../screens/GameOver.js";
+import GameOver from "../../UI/screens/GameOver.js";
 
 const gameOver = new GameOver();
 

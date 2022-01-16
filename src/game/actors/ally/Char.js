@@ -1,15 +1,17 @@
-import engine from "../../engine/engine.js";
+import engine from "../../../engine/engine.js";
 import Bullet from "../other/Bullet.js";
 
+const imgPath = "../../src/assets/img/char/"
+
 const charImgPath = {
-  idle: "../src/assets/img/char/idle.png",
-  forward: "../src/assets/img/char/forward.png",
-  backward: "../src/assets/img/char/backward.png",
-  idleAttack: "../src/assets/img/char/idleAttack.png",
-  forwardAttack: "../src/assets/img/char/forwardAttack.png",
-  backwardAttack: "../src/assets/img/char/backwardAttack.png",
-  damaged: "../src/assets/img/char/damaged.png",
-  invisible: "../src/assets/img/char/invisible.png"
+  idle: `${imgPath}idle.png`,
+  forward: `${imgPath}forward.png`,
+  backward: `${imgPath}backward.png`,
+  idleAttack: `${imgPath}idleAttack.png`,
+  forwardAttack: `${imgPath}forwardAttack.png`,
+  backwardAttack: `${imgPath}backwardAttack.png`,
+  damaged: `${imgPath}damaged.png`,
+  invisible: `${imgPath}invisible.png`
 }
 
 function Char() {

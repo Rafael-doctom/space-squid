@@ -1,6 +1,6 @@
-import engine from "../engine/engine.js";
+import engine from "../../engine/engine.js";
 
-const cursorImgPath = {idle: "../src/assets/img/other/cursor.png"};
+const cursorImgPath = {idle: "../../src/assets/img/other/cursor.png"};
 
 function Title() {
   engine.components.Component.call(

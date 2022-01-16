@@ -1,9 +1,11 @@
-import engine from "../../engine/engine.js"
+import engine from "../../../engine/engine.js"
 import Explosion from "../other/Explosion.js";
 
+const imgPath = "../../src/assets/img/enemy/airship/";
+
 const airshipImgPath = {
-  idle: "../../src/assets/img/enemy/airship/idle.png",
-  invisible: "../../src/assets/img/char/invisible.png"
+  idle: `${imgPath}idle.png`,
+  invisible: "../../../src/assets/img/char/invisible.png"
 };
 
 function Airship(x = 940, y = 150) {
