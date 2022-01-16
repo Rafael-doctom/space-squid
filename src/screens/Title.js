@@ -12,11 +12,11 @@ function Title() {
     0, 0
   );
 
-  this.heading = new Text("120px", "#94e344", "center");
-  this.menu = new Text("40px", "#e2f3e4", "center");
-  this.cursor = new Component(40, 40, cursorImgPath, myGameArea.width / 3, 300, "image");
+  this.heading = new Text("14px", "#94e344", "center");
+  this.menu = new Text("6px", "#e2f3e4", "center");
+  this.cursor = new Component(6, 4, cursorImgPath, myGameArea.width / 3, 35, "image");
   this.choice = "none";
-  this.cursorY = 300;
+  this.cursorY = 35;
   this.cursorDelay = false;
 
   this.render = function() {
@@ -25,10 +25,10 @@ function Title() {
   }
 
   this.write = function() {
-    this.heading.write("Space Squid", myGameArea.width / 2, 150);
-    this.menu.write("Start", myGameArea.width / 2, 300);
-    this.menu.write("Options", myGameArea.width / 2, 400);
-    this.menu.write("Credits", myGameArea.width / 2, 500);
+    this.heading.write("Space Squid", myGameArea.width / 2, 15);
+    this.menu.write("Start", myGameArea.width / 2, 35);
+    this.menu.write("Options", myGameArea.width / 2, 45);
+    this.menu.write("Credits", myGameArea.width / 2, 55);
 
     this.cursor.y = this.cursorY - this.cursor.height;
     this.cursor.update();
@@ -46,16 +46,16 @@ function Title() {
     }
   
     if (dir == "down")
-      if (this.cursorY + 100 > 500)
+      if (this.cursorY + 10 > 55)
         return;
       else
-        this.cursorY += 100;
+        this.cursorY += 10;
   
     if (dir == "up")
-      if (this.cursorY - 100 < 300)
+      if (this.cursorY - 10 < 35)
         return;
       else
-        this.cursorY -= 100;    
+        this.cursorY -= 10;    
   
     this.cursorDelay = true;
   
@@ -65,11 +65,11 @@ function Title() {
   }
 
   this.chooseCursor = function() {
-    if (this.cursorY == 300)
+    if (this.cursorY == 35)
       this.choice = "start";
-    else if (this.cursorY == 400)
+    else if (this.cursorY == 45)
       this.choice = "options";
-    else if (this.cursorY == 500)
+    else if (this.cursorY == 55)
       this.choice = "credit";
   }
 }

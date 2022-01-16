@@ -11,8 +11,8 @@ function GameOver() {
     0, 0, "image"
   );
 
-  this.heading = new Text("100px", "#e2f3e4", "center");
-  this.content = new Text("40px", "#e2f3e4", "center");
+  this.heading = new Text("12px", "#e2f3e4", "center");
+  this.content = new Text("6px", "#e2f3e4", "center");
   this.choice = "none";
 
   this.render = function() {
@@ -21,9 +21,9 @@ function GameOver() {
   }
 
   this.write = function() {
-    this.heading.write("Game Over", myGameArea.width / 2, 250);
-    this.content.write("Press Space", myGameArea.width / 2, 450);
-    this.content.write("to Continue", myGameArea.width / 2, 500)
+    this.heading.write("Game Over", myGameArea.width / 2, 25);
+    this.content.write("Press Space", myGameArea.width / 2, 40);
+    this.content.write("to Continue", myGameArea.width / 2, 45)
   }
 
   this.restartGame = function(keyboardControl) {
