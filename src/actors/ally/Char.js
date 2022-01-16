@@ -1,9 +1,5 @@
-import Component from "../../base/Component.js";
-import detectColision from "../../base/detectColision.js";
-
+import engine from "../../engine/engine.js";
 import Bullet from "../other/Bullet.js";
-import Animation from "../../base/Animation.js";
-import SoundComponent from "../../base/SoundComponent.js";
 
 const charImgPath = {
   idle: "../src/assets/img/char/idle.png",
@@ -17,11 +13,11 @@ const charImgPath = {
 }
 
 function Char() {
-  Component.call(this, 7, 7, charImgPath, 21, 21, "image");
+  engine.components.Component.call(this, 7, 7, charImgPath, 21, 21, "image");
 
   this.speed = 0.5;
   this.life = 8;
-  this.damage = 2;
+  this.damage = 1000;//2;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
@@ -29,10 +25,10 @@ function Char() {
   this.isDead = false;
   this.bullets = [];
   this.bulletDelay = 0;
-  this.idleAttackAnimation = new Animation(this, [3, 0], 8);
-  this.forwardAttackAnimation = new Animation(this, [4, 1], 8);
-  this.backwardAttackAnimation = new Animation(this, [5, 2], 8);
-  this.attackSound = new SoundComponent("../src/assets/sound/char/attack.wav");
+  this.idleAttackAnimation = new engine.other.Animation(this, [3, 0], 8);
+  this.forwardAttackAnimation = new engine.other.Animation(this, [4, 1], 8);
+  this.backwardAttackAnimation = new engine.other.Animation(this, [5, 2], 8);
+  this.attackSound = new engine.components.SoundComponent("../src/assets/sound/char/attack.wav");
 
   this.render = function() { 
     if (this.isDamaged) {
@@ -102,7 +98,7 @@ function Char() {
 
   this.tookDamage = function(object, healthBar) {
     if (!this.isDamaged) {
-      if (detectColision(this, object) && (object.isMoving && !object.isDead)) {
+      if (engine.physics.detectColision(this, object) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
         this.life -= object.damage;
         healthBar.changeImg(this.life);

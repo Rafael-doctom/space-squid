@@ -1,5 +1,4 @@
-import keyboardControl from "../base/keyboardControl.js";
-import syncDelay from "../base/syncDelay.js";
+import engine from "../engine/engine.js";
 
 import Background from "../actors/other/Background.js";
 import Char from "../actors/ally/Char.js";
@@ -25,18 +24,19 @@ const airships = new EnemyList("Airship");
 
 const boss = new SuperAirship(800, 200);
 
-helicopters.array.push(new Helicopter(840, 350));
-helicopters.array.push(new Helicopter(740, 250));
-helicopters.array.push(new Helicopter(940, 150));
+helicopters.array.push(new Helicopter(100, 10));
+helicopters.array.push(new Helicopter(90, 20));
+helicopters.array.push(new Helicopter(80, 30));
 
-airships.array.push(new Airship(1140, 350));
-airships.array.push(new Airship(1040, 250));
-airships.array.push(new Airship(940, 150));
+airships.array.push(new Airship(100, 10));
+airships.array.push(new Airship(90, 20));
+airships.array.push(new Airship(110, 30));
 
 const waveList = new WaveList();
 
 const wave1 = function() {
-  setTimeout(() => helicopters.isEnemysActive = true, 5000);
+  if (!helicopters.isEnemysActive)
+    setTimeout(() => helicopters.isEnemysActive = true, 4000);
   helicopters.actions(char.bullets, char.y, char.y + char.height);
   
   if (helicopters.isAllEnemysDead) {
@@ -45,26 +45,26 @@ const wave1 = function() {
 }
 
 const wave2 = function() {      
-  setTimeout(() => airships.isEnemysActive = true, 5000);
+  if (!airships.isEnemysActive)
+    setTimeout(() => airships.isEnemysActive = true, 4000);
   airships.actions(char.bullets);
 
-  if (airships.isAllEnemysDead)
-    waveList.currentWave++;
+  if (airships.isAllEnemysDead) {
+    waveList.currentWave++
+  }
 }
 
 const wave3 = function() {
-  if (helicopters.isAllEnemysDead && airships.isAllEnemysDead) {
-    helicopters.isAllEnemysDead = false;
-    airships.isAllEnemysDead = false;
+  if (!helicopters.isEnemysActive && !airships.isEnemysActive) {
+    setTimeout(() => {
+      helicopters.isEnemysActive = true;
+      airships.isEnemysActive = true;
+    }, 5000);
+    
     helicopters.ressurectAllEnemys();
     airships.ressurectAllEnemys();
-
-    setTimeout(() => {
-      airships.isEnemysActive = true;
-      helicopters.isEnemysActive = true;
-    }, 5000);
   }
-
+  
   helicopters.actions(char.bullets, char.y, char.y + char.height);
   airships.actions(char.bullets);
 }
@@ -74,6 +74,8 @@ waveList.waves.push(wave2);
 waveList.waves.push(wave3);
 
 function level1() {
+  //console.log(waveList.currentWave);
+
   if (!background.music.isPlaying)
     background.music.play();
   
@@ -90,7 +92,7 @@ function level1() {
 
 function charActions() {
   char.clearmove();
-  char.movement(keyboardControl);
+  char.movement(engine.inputs.keyboardControl, engine.inputs.touchControl);
 
   for (let index = 0; index < helicopters.array.length; index++) {
     if (!helicopters.array[index].isDead) {
@@ -116,7 +118,7 @@ function renderAll() {
 
 function lose() {
   gameOver.render();
-  gameOver.restartGame(keyboardControl);
+  gameOver.restartGame(engine.inputs.keyboardControl);
   if (gameOver.choice == "restart") {
     char.resurrect(healthBar);
     waveList.currentWave = 0;

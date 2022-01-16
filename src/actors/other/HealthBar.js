@@ -1,4 +1,4 @@
-import Component from "../../base/Component.js";
+import engine from "../../engine/engine.js";
 
 const healthBarImgPath = {
   l8: "../src/assets/img/healthBar/eight.png",
@@ -9,7 +9,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  Component.call(this, 6, 16, healthBarImgPath, 1, 1, "image");
+  engine.components.Component.call(this, 6, 16, healthBarImgPath, 1, 1, "image");
 
   this.render = function() {
     this.newPos();

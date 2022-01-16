@@ -1,8 +1,7 @@
-import myGameArea from "./base/myGameArea.js";
-import keyboardControl from "./base/keyboardControl.js";
+import engine from "./engine/engine.js";
 
-import Title from "./screens/Title.js";
 import level1 from "./levels/level1.js";
+import Title from "./screens/Title.js";
 
 let title = null;
 
@@ -11,21 +10,22 @@ window.addEventListener("click", () => {
 });
 
 function startGame() {
-  myGameArea.start();
+  engine.other.myGameArea.start();
   title = new Title();
-  keyboardControl.initEvents();
+  engine.inputs.keyboardControl.initEvents();
+  engine.inputs.touchControl.initEvents();
   updateGameArea();
 }
 
 function updateGameArea() {
   if (title.choice == "none") {
     title.render();
-    title.movement(keyboardControl);
+    title.movement(engine.inputs.keyboardControl);
   }
 
   if (title.choice == "start")
     level1();
-
+  //engine.inputs.touchControl.renderButtons();
   requestAnimationFrame(updateGameArea);
 }
 

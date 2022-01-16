@@ -1,7 +1,4 @@
-import Component from "../../base/Component.js";
-import SoundComponent from "../../base/SoundComponent.js";
-import detectColision from "../../base/detectColision.js";
-
+import engine from "../../engine/engine.js"
 import Explosion from "../other/Explosion.js";
 
 const airshipImgPath = {
@@ -10,7 +7,7 @@ const airshipImgPath = {
 };
 
 function Airship(x = 940, y = 150) {
-  Component.call(this, 12, 8, airshipImgPath, x, y, "image");
+  engine.components.Component.call(this, 12, 8, airshipImgPath, x, y, "image");
 
   this.speed = 2;
   this.life = 8;
@@ -20,7 +17,7 @@ function Airship(x = 940, y = 150) {
   this.isMoving = false;
   this.direction = "left";
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
 
   this.render = function() {   
     if (this.isDead && this.deathExplosion.duration > 0) {
@@ -44,7 +41,7 @@ function Airship(x = 940, y = 150) {
 
   this.tookDamage = function(object) {
     if (!this.isDamaged) {
-      if (detectColision(this, object) && object.isMoving && !object.isDead) {
+      if (engine.physics.detectColision(this, object) && object.isMoving && !object.isDead) {
         this.isDamaged = true;
         this.life -= object.damage;
 

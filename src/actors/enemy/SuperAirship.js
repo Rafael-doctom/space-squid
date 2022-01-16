@@ -1,9 +1,5 @@
-import Component from "../../base/Component.js";
-import SoundComponent from "../../base/SoundComponent.js";
-import detectColision from "../../base/detectColision.js";
-
+import engine from "../../engine/engine.js";
 import Explosion from "../other/Explosion.js";
-import HitBox from "../../base/Hitbox.js";
 
 const superAirshipImgPath = {
   idle: "../../src/assets/img/enemy/superAirship/idle.png",
@@ -16,7 +12,7 @@ const superAirshipImgPath = {
 };
 
 function SuperAirship(x = 940, y = 150) {
-  Component.call(this, 480, 480, superAirshipImgPath, x, y, "image");
+  engine.components.Component.call(this, 480, 480, superAirshipImgPath, x, y, "image");
 
   this.speed = 2.5;
   this.life = 128;
@@ -26,12 +22,12 @@ function SuperAirship(x = 940, y = 150) {
   this.isMoving = false;
   this.direction = "down";
   this.hitBox = {
-    upWing: new HitBox(240, 150),
-    body: new HitBox(480, 180),
-    downWing: new HitBox(240, 150)
+    upWing: new engine.physics.HitBox(240, 150),
+    body: new engine.physics.HitBox(480, 180),
+    downWing: new engine.physics.HitBox(240, 150)
   }
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
 
   this.render = function() {   
       if (this.isDead && this.deathExplosion.duration > 0) {
@@ -67,7 +63,7 @@ function SuperAirship(x = 940, y = 150) {
     let colideCount = 0;
 
     for (let index in this.hitBox) {
-      if (detectColision(this.hitBox[index], object) && this.hitBox[index].isActive)
+      if (engine.physics.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive)
         colideCount++;
     }
  

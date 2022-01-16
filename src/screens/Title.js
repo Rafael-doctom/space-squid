@@ -1,10 +1,9 @@
-import Component from "../base/Component.js";
-import Text from "../base/Text.js";
+import engine from "../engine/engine.js";
 
 const cursorImgPath = {idle: "../src/assets/img/other/cursor.png"};
 
 function Title() {
-  Component.call(
+  engine.components.Component.call(
     this,
     myGameArea.width,
     myGameArea.height,
@@ -12,9 +11,9 @@ function Title() {
     0, 0
   );
 
-  this.heading = new Text("14px", "#94e344", "center");
-  this.menu = new Text("6px", "#e2f3e4", "center");
-  this.cursor = new Component(6, 4, cursorImgPath, myGameArea.width / 3, 35, "image");
+  this.heading = new engine.components.Text("14px", "#94e344", "center");
+  this.menu = new engine.components.Text("6px", "#e2f3e4", "center");
+  this.cursor = new engine.components.Component(6, 4, cursorImgPath, myGameArea.width / 3, 35, "image");
   this.choice = "none";
   this.cursorY = 35;
   this.cursorDelay = false;
@@ -25,10 +24,10 @@ function Title() {
   }
 
   this.write = function() {
-    this.heading.write("Space Squid", myGameArea.width / 2, 15);
-    this.menu.write("Start", myGameArea.width / 2, 35);
-    this.menu.write("Options", myGameArea.width / 2, 45);
-    this.menu.write("Credits", myGameArea.width / 2, 55);
+    this.heading.write("Space Squid", engine.other.myGameArea.width / 2, 15);
+    this.menu.write("Start", engine.other.myGameArea.width / 2, 35);
+    this.menu.write("Options", engine.other.myGameArea.width / 2, 45);
+    this.menu.write("Credits", engine.other.myGameArea.width / 2, 55);
 
     this.cursor.y = this.cursorY - this.cursor.height;
     this.cursor.update();

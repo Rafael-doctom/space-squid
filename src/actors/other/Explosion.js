@@ -1,5 +1,4 @@
-import Component from "../../base/Component.js";
-import Animation from "../../base/Animation.js";
+import engine from "../../engine/engine.js";
 
 const explosionImgPath = {
   e1: "../../src/assets/img/effects/explosion/1.png",
@@ -9,8 +8,8 @@ const explosionImgPath = {
 }
 
 function Explosion() {
-  Component.call(this, 12, 12, explosionImgPath, 0, 0, "image");
-  this.animation = new Animation(this, [0, 1, 2, 3], 5);
+  engine.components.Component.call(this, 12, 12, explosionImgPath, 0, 0, "image");
+  this.animation = new engine.other.Animation(this, [0, 1, 2, 3], 5);
   this.duration = 20;
 
   this.getCurrentPosition = function(x, y) {

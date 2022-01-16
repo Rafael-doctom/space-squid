@@ -1,9 +1,9 @@
-import Component from "../../base/Component.js";
+import engine from "../../engine/engine.js";
 
 const shotImgPath = {idle: "../src/assets/img/attacks/shot.png"};
 
 function Bullet(damage, width = 4, height = 2, x = 0, y = 0) {
-  Component.call(this, width, height, shotImgPath, x, y, "image")
+  engine.components.Component.call(this, width, height, shotImgPath, x, y, "image")
 
   this.damage = damage;
   this.speed = 3;

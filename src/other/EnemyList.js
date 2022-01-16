@@ -6,8 +6,6 @@ function EnemyList(type, isEnemysActive = false) {
   this.isEnemysActiveInitial = isEnemysActive;
 
   this.renderAll = function() {
-    console.log(this.isEnemysActive);
-
     if (!this.isEnemysActive)
       return;
 
@@ -42,13 +40,14 @@ function EnemyList(type, isEnemysActive = false) {
         count++;
     }
   
-    if (count == this.array.length) 
+    if (count == this.array.length) {
+      this.isEnemysActive = false;
       this.isAllEnemysDead = true;
+    }
   }
 
   this.ressurectAllEnemys = function() {    
     this.isAllEnemysDead = false;
-    this.isEnemysActive = this.isEnemysActiveInitial;
 
     for (let enemy of this.array) {
       enemy.resurrect();
