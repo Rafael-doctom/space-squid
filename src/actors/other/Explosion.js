@@ -9,7 +9,7 @@ const explosionImgPath = {
 }
 
 function Explosion() {
-  Component.call(this, 100, 100, explosionImgPath, 0, 0, "image");
+  Component.call(this, 12, 12, explosionImgPath, 0, 0, "image");
   this.animation = new Animation(this, [0, 1, 2, 3], 5);
   this.duration = 20;
 

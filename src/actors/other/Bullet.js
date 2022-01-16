@@ -2,11 +2,11 @@ import Component from "../../base/Component.js";
 
 const shotImgPath = {idle: "../src/assets/img/attacks/shot.png"};
 
-function Bullet(damage, width = 32, height = 16, x = 0, y = 0) {
+function Bullet(damage, width = 4, height = 2, x = 0, y = 0) {
   Component.call(this, width, height, shotImgPath, x, y, "image")
 
   this.damage = damage;
-  this.speed = 20;
+  this.speed = 3;
   this.isMoving = false;
   this.isDead = false;
 

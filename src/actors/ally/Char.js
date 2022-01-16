@@ -17,11 +17,11 @@ const charImgPath = {
 }
 
 function Char() {
-  Component.call(this, 56, 56, charImgPath, 210, 180, "image");
+  Component.call(this, 7, 7, charImgPath, 21, 21, "image");
 
-  this.speed = 5;
+  this.speed = 0.5;
   this.life = 8;
-  this.damage = 1000;//2;
+  this.damage = 2;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
@@ -49,7 +49,6 @@ function Char() {
 
     this.update();
     this.newPos();
-
   }
 
   this.renderBullets = function() {
@@ -72,7 +71,7 @@ function Char() {
     if (this.bulletDelay == 0) {
       this.attackSound.play();
       this.isAttacking = true;
-      this.bullets.push(new Bullet(this.damage, 30, 15, this.x + 85, this.y + 25));
+      this.bullets.push(new Bullet(this.damage, 4, 2, this.x + 8, this.y + 1));
   
       for (const bullet of this.bullets) {
         bullet.move("right");
@@ -83,20 +82,20 @@ function Char() {
     } 
   }
 
-  this.movement = function(keyboardControl) {
+  this.movement = function(keyboardControl, touchControl) {
     let isNotMovingCount = 0;
 
-    if (keyboardControl.keysPressed.spacePressed) {this.attack()}
+    if (keyboardControl.keysPressed.spacePressed || touchControl.buttonsPressed.space) {this.attack()}
     else this.isAttacking = false;
 
-    if (keyboardControl.keysPressed.leftPressed) {this.move("left")}
+    if (keyboardControl.keysPressed.leftPressed || touchControl.buttonsPressed.left) {this.move("left")}
     else isNotMovingCount++;
 
-    if (keyboardControl.keysPressed.rightPressed) {this.move("right")}
+    if (keyboardControl.keysPressed.rightPressed  || touchControl.buttonsPressed.right) {this.move("right")}
     else isNotMovingCount++;
 
-    if (keyboardControl.keysPressed.upPressed) {this.move("up")}
-    if (keyboardControl.keysPressed.downPressed) {this.move("down")}
+    if (keyboardControl.keysPressed.upPressed || touchControl.buttonsPressed.up) {this.move("up")}
+    if (keyboardControl.keysPressed.downPressed || touchControl.buttonsPressed.down) {this.move("down")}
 
     if (isNotMovingCount > 1) this.isMoving = false;
   }
@@ -105,7 +104,7 @@ function Char() {
     if (!this.isDamaged) {
       if (detectColision(this, object) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
-        //this.life -= object.damage;
+        this.life -= object.damage;
         healthBar.changeImg(this.life);
   
         if (this.life == 0)
@@ -120,7 +119,7 @@ function Char() {
 
         const interval1 = setInterval(() => this.isInvencible = false, 100);
         const interval2 = setInterval(() => this.isInvencible = true, 200);
-      }     
+      }     1000;//
     }
   }
 
@@ -166,8 +165,8 @@ function Char() {
       this.x = 0;
       return; 
     }
-    if (this.x > myGameArea.width - 100) {
-      this.x = myGameArea.width - 100;
+    if (this.x > myGameArea.width -7) {
+      this.x = myGameArea.width - 7;
       return;
     }  
     if (this.y < 0) {
@@ -175,8 +174,8 @@ function Char() {
       return;
     }
     
-    if (this.y > myGameArea.height - 100) {
-      this.y = myGameArea.height - 100;
+    if (this.y > myGameArea.height - 7) {
+      this.y = myGameArea.height - 7;
       return;
     }
   

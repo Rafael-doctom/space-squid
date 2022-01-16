@@ -10,9 +10,9 @@ const airshipImgPath = {
 };
 
 function Airship(x = 940, y = 150) {
-  Component.call(this, 92, 56, airshipImgPath, x, y, "image");
+  Component.call(this, 12, 8, airshipImgPath, x, y, "image");
 
-  this.speed = 15;
+  this.speed = 2;
   this.life = 8;
   this.damage = 2;
   this.isDamaged = false;
@@ -38,7 +38,7 @@ function Airship(x = 940, y = 150) {
     this.speedX = -this.speed;
 
     if (this.x < 0) {
-      this.x = 1300;
+      this.x = myGameArea.width;
     }
   }
 
