@@ -2,15 +2,20 @@ import Component from "../components/Component.js";
 import detectColision from "../physics/detectColision.js";
 
 const touchControl = {
-  userFinger: new Component(8, 8, "black", 16, 24),
-  otherUserFinger: new Component(8, 8, "blue", 0, 0),
+  touches: [],
+
+  joystick: {
+    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image"),
+    in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image"),
+    shot: new Component(24, 24, {idle: "../../src/assets/img/controls/shot.png"}, 102, 46, "image"),
+  },
 
   buttons: {
-    up: new Component(24, 8, "red", 8, 44),
-    down: new Component(24, 8, "green", 8, 60),
-    left: new Component(8, 24, "orange", 8, 44),
-    right: new Component(8, 24, "yellow", 24, 44),
-    space: new Component(8, 8, "red", 110, 52)
+    up: new Component(24, 8, "red", 2, 46),
+    down: new Component(24, 8, "green", 2, 62),
+    left: new Component(8, 24, "orange", 2, 46),
+    right: new Component(8, 24, "yellow", 18, 46),
+    space: new Component(24, 24, "red", 102, 46)
   },
 
   buttonsPressed: {
@@ -22,16 +27,21 @@ const touchControl = {
   },
 
   renderButtons: function() {
+/*
     this.buttons.up.update();
     this.buttons.down.update();
     this.buttons.left.update();
     this.buttons.right.update();
     this.buttons.space.update();
-    this.userFinger.update();
-    this.otherUserFinger.update();
+*/
+    this.joystick.out.update()
+    this.joystick.in.update();
+    this.joystick.shot.update();
   },
 
   initEvents: function() {
+    this.buttons.space.name = "space";
+
     window.addEventListener("touchstart", e => {
       this.touchStartHandler(e);
     }); 
@@ -46,44 +56,62 @@ const touchControl = {
   },
 
   touchStartHandler: function(e) {
-    const touch = e.changedTouches[0];
-    const touch2 = e.changedTouches[1];
-
-    let xRatio = 128 / innerWidth;
-    let yRatio = 72 / innerHeight;
-
-    this.userFinger.x = Math.floor(touch.pageX * xRatio) - this.userFinger.width / 2;
-    this.userFinger.y = Math.floor(touch.pageY * yRatio) - this.userFinger.height / 2;
-
-    if (touch2) {
-      this.otherUserFinger.x = Math.floor(touch2.pageX * xRatio) - this.otherUserFinger.width / 2;
-      this.otherUserFinger.y = Math.floor(touch2.pageY * yRatio) - this.otherUserFinger.height / 2;
-    }
-
-    this.isButtonTouched();
+    this.testButtons(e.targetTouches);
   },
 
   touchEndHandler: function(e) {  
-    if (!e.touches[0]) {
-      this.userFinger.x = 16;
-      this.userFinger.y = 52;
-    }
-
-    if (!e.touches[1]) {
-      this.otherUserFinger.x = 0;
-      this.otherUserFinger.y = 0;
-    }
-
-    this.isButtonTouched();
+    this.testButtons(e.targetTouches);
+    this.resetIn();
   },
 
-  isButtonTouched: function() {
-    for (let button in this.buttons) {
-      this.buttonsPressed[button] = 
-      detectColision(this.userFinger, this.buttons[button]) ||
-      detectColision(this.otherUserFinger, this.buttons[button]);
-    }
+  testButtons: function(targetTouches) {
+    const xRatio = 128 / innerWidth;
+    const yRatio = 72 / innerHeight;
+    let button, touch, buttonActive;
+
+    for (let index = 4; index > -1; --index) {
+      button = this.buttons[Object.keys(this.buttons)[index]];
+      buttonActive = false;
+
+      for (let index = targetTouches.length - 1; index > -1; --index) {
+        touch = targetTouches[index]
+        touch.x = Math.floor(touch.pageX * xRatio) - 4;
+        touch.y = Math.floor(touch.pageY * yRatio) - 4;
+        touch.width = 8;
+        touch.height = 8;
+        
+        
+        if (detectColision(touch, button)) {
+          if (button.name != "space")
+            this.moveIn(touch.x, touch.y);
+          buttonActive = true;
+          break;
+        } 
+      }
+
+      this.buttonsPressed[Object.keys(this.buttonsPressed)[index]] = buttonActive;
+    } 
   },
+
+  moveIn: function(x, y) {
+    this.joystick.in.x = x;
+    this.joystick.in.y = y;
+
+    if (this.joystick.in.x > 18)
+      this.joystick.in.x = 18;
+    if (this.joystick.in.x < 2)
+      this.joystick.in.x = 2;
+
+    if (this.joystick.in.y > 62)
+      this.joystick.in.y = 62;
+    if (this.joystick.in.y < 46)
+      this.joystick.in.y = 46;
+  },
+
+  resetIn: function() {
+    this.joystick.in.x = 10;
+    this.joystick.in.y = 54;
+  }
 }
 
 export default touchControl;

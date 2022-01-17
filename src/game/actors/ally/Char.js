@@ -102,7 +102,7 @@ function Char() {
     if (!this.isDamaged) {
       if (engine.physics.detectColision(this, object) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
-        this.life -= object.damage;
+        //this.life -= object.damage;
         healthBar.changeImg(this.life);
   
         if (this.life == 0)
