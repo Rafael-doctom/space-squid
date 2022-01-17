@@ -14,7 +14,7 @@ const superAirshipImgPath = {
 };
 
 function SuperAirship(x = 940, y = 150) {
-  engine.components.Component.call(this, 480, 480, superAirshipImgPath, x, y, "image");
+  engine.components.Component.call(this, 32, 32, superAirshipImgPath, x, y, "image");
 
   this.speed = 2.5;
   this.life = 128;

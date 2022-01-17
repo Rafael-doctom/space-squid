@@ -69,7 +69,7 @@ function Char() {
     if (this.bulletDelay == 0) {
       this.attackSound.play();
       this.isAttacking = true;
-      this.bullets.push(new Bullet(this.damage, 4, 2, this.x + 8, this.y + 1));
+      this.bullets.push(new Bullet(this.damage, 4, 3, this.x + 8, this.y + 1));
   
       for (const bullet of this.bullets) {
         bullet.move("right");
@@ -117,7 +117,7 @@ function Char() {
 
         const interval1 = setInterval(() => this.isInvencible = false, 100);
         const interval2 = setInterval(() => this.isInvencible = true, 200);
-      }     1000;//
+      }     //1000;//
     }
   }
 
@@ -172,8 +172,8 @@ function Char() {
       return;
     }
     
-    if (this.y > myGameArea.height - 7) {
-      this.y = myGameArea.height - 7;
+    if (this.y > myGameArea.height - 15) {
+      this.y = myGameArea.height - 15;
       return;
     }
   

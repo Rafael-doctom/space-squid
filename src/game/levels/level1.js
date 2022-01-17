@@ -22,7 +22,7 @@ const char = new Char();
 const helicopters = new EnemyList("Helicopter");
 const airships = new EnemyList("Airship");
 
-const boss = new SuperAirship(800, 200);
+//const boss = new SuperAirship(800, 200);
 
 helicopters.array.push(new Helicopter(100, 10));
 helicopters.array.push(new Helicopter(90, 20));

@@ -1,6 +1,6 @@
 import engine from "../../../engine/engine.js";
 
-const backgroundImgPath = {idle: "../../src/assets/img/background/sky2.png"};
+const backgroundImgPath = {idle: "../../src/assets/img/background/sky.png"};
 
 function Background() {
   engine.components.Component.call(

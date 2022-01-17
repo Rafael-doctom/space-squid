@@ -23,7 +23,7 @@ function updateGameArea() {
     title.movement(engine.inputs.keyboardControl);
   }
 
-  if (title.choice == "start")
+  //if (title.choice == "start")
     level1();
   //engine.inputs.touchControl.renderButtons();
   requestAnimationFrame(updateGameArea);

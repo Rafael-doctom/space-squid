@@ -11,7 +11,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  engine.components.Component.call(this, 6, 16, healthBarImgPath, 1, 1, "image");
+  engine.components.Component.call(this, 6, 17, healthBarImgPath, 1, 1, "image");
 
   this.render = function() {
     this.newPos();
