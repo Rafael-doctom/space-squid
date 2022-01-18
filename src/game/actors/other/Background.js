@@ -14,7 +14,7 @@ function Background() {
   this.music = new engine.components.SoundComponent("../src/assets/sound/background/sky2.mp3", 0.35, true);
 
   this.render = function() {
-    this.speedX = -1;
+    this.speedX = -0.25;
     this.newPos();
     this.update();
   }

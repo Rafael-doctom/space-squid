@@ -12,11 +12,11 @@
 
 import imgComponent from "./ImgComponent.js";
 
-function Component(width, height, color, x, y, type) {
+function Component(width, height, color, x, y, type, currentImageIndex = 0) {
   this.type = type;
   if (type == "image" || type == "background") {
     this.images = new imgComponent(color);
-    this.currentImage = this.images[Object.keys(this.images)[0]];
+    this.currentImage = this.images[Object.keys(this.images)[currentImageIndex]];
   }
   this.width = width;
   this.height = height;

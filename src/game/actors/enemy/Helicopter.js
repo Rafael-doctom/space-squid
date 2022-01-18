@@ -16,7 +16,7 @@ function Helicopter(x = 940, y = 150) {
   engine.components.Component.call(this, 12, 7, helicopterImgPath, x, y, "image");
 
   this.speed = 0.5;
-  this.life = 16;
+  this.life = 8;
   this.damage = 2;
   this.isDamaged = false;
   this.isDead = false;
@@ -57,8 +57,8 @@ function Helicopter(x = 940, y = 150) {
   }
 
   this.attack = function(targetYStart, targetYEnd) {  
-    if (this.bulletDelay == 0 && this.y > targetYStart && this.y < targetYEnd) {
-      this.bullets.push(new Bullet(this.damage, 4, 3, this.x, this.y));
+    if (this.bulletDelay == 0 && this.y + 5 > targetYStart && this.y + 5 < targetYEnd) {
+      this.bullets.push(new Bullet(this.damage, 2, 2, 1, this.x, this.y + 5));
   
       for (const bullet of this.bullets) {
         bullet.move("left");
@@ -73,7 +73,7 @@ function Helicopter(x = 940, y = 150) {
 
     this.speedY = this.direction == "up" ? -this.speed : this.speed;
 
-    if (this.y == 5) {
+    if (this.y == 0) {
       this.direction = "down";
     }
 

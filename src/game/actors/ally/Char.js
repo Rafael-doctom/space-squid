@@ -19,10 +19,11 @@ function Char() {
 
   this.speed = 0.5;
   this.life = 8;
-  this.damage = 1000;//2;
+  this.damage = 2;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
+  this.direction = null;
   this.isInvencible = false;
   this.isDead = false;
   this.bullets = [];
@@ -69,7 +70,7 @@ function Char() {
     if (this.bulletDelay == 0) {
       this.attackSound.play();
       this.isAttacking = true;
-      this.bullets.push(new Bullet(this.damage, 4, 3, this.x + 8, this.y + 1));
+      this.bullets.push(new Bullet(this.damage, 3, 5, 1, this.x + 4, this.y + 2, 1));
   
       for (const bullet of this.bullets) {
         bullet.move("right");
@@ -102,7 +103,7 @@ function Char() {
     if (!this.isDamaged) {
       if (engine.physics.detectColision(this, object) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
-        //this.life -= object.damage;
+        this.life -= object.damage;
         healthBar.changeImg(this.life);
   
         if (this.life == 0)
@@ -117,13 +118,13 @@ function Char() {
 
         const interval1 = setInterval(() => this.isInvencible = false, 100);
         const interval2 = setInterval(() => this.isInvencible = true, 200);
-      }     //1000;//
+      }     
     }
   }
 
   this.resurrect = function(healthBar) {
-    this.x = 10;
-    this.y = 120;
+    this.x = 21;
+    this.y = 21;
     this.life = 8;
     this.isDead = false;
     healthBar.changeImg(this.life);
@@ -132,13 +133,13 @@ function Char() {
   this.move = function(dir) {
     this.isMoving = true;
 
-    if (dir != "left") {
+    if (dir != "left" && this.speedX > -0.5) {
       if (!(this.currentImage == this.images.forward || this.currentImage == this.images.forwardAttack))
         this.currentImage = this.images.forward;
-    } else if (dir == "left"){
+    } else if (dir == "left") {
       if (!(this.currentImage == this.images.backward || this.currentImage == this.images.backwardAttack))
         this.currentImage = this.images.backward;
-    } 
+    }
   
     if (!this.preventMoveOutScreen())
       return;

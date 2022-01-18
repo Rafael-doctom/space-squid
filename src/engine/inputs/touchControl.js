@@ -3,6 +3,7 @@ import detectColision from "../physics/detectColision.js";
 
 const touchControl = {
   touches: [],
+  isTouchDevice: false,
 
   joystick: {
     out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image"),
@@ -27,6 +28,8 @@ const touchControl = {
   },
 
   renderButtons: function() {
+    if (!this.isTouchDevice)
+      return;
 /*
     this.buttons.up.update();
     this.buttons.down.update();
@@ -40,6 +43,20 @@ const touchControl = {
   },
 
   initEvents: function() {
+    function isTouchDevice() {
+      return (('ontouchstart' in window) ||
+         (navigator.maxTouchPoints > 0) ||
+         (navigator.msMaxTouchPoints > 0));
+    }
+
+    if (isTouchDevice())
+      this.isTouchDevice = true;
+    else 
+      this.isTouchDevice = false;
+
+    if (!this.isTouchDevice)
+      return;
+
     this.buttons.space.name = "space";
 
     window.addEventListener("touchstart", e => {

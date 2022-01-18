@@ -25,35 +25,48 @@ const airships = new EnemyList("Airship");
 //const boss = new SuperAirship(800, 200);
 
 helicopters.array.push(new Helicopter(100, 10));
-helicopters.array.push(new Helicopter(90, 20));
-helicopters.array.push(new Helicopter(80, 30));
 
-airships.array.push(new Airship(100, 10));
-airships.array.push(new Airship(90, 20));
+helicopters.array.push(new Helicopter(80, 30));
+helicopters.array.push(new Helicopter(90, 20));
+helicopters.array.push(new Helicopter(100, 10));
+
+helicopters.array.push(new Helicopter(80, 10));
+helicopters.array.push(new Helicopter(90, 20));
+helicopters.array.push(new Helicopter(100, 30));
+helicopters.array.push(new Helicopter(110, 40));
+helicopters.array.push(new Helicopter(120, 50));
+
 airships.array.push(new Airship(110, 30));
+
+airships.array.push(new Airship(110, 20));
+airships.array.push(new Airship(100, 30));
+airships.array.push(new Airship(110, 40));
+
+airships.array.push(new Airship(110, 10));
+airships.array.push(new Airship(100, 20));
+airships.array.push(new Airship(90, 30));
+airships.array.push(new Airship(100, 40));
+airships.array.push(new Airship(110, 50));
 
 const waveList = new WaveList();
 
 const wave1 = function() {
-  if (!helicopters.isEnemysActive)
-    setTimeout(() => helicopters.isEnemysActive = true, 4000);
+  helicopters.activateEnemies(1, 5000, helicopters.deadEnemies == 0);
+  helicopters.activateEnemies(4, 5000, helicopters.deadEnemies == 1);
+  helicopters.activateEnemies(9, 5000, helicopters.deadEnemies == 4);
   helicopters.actions(char.bullets, char.y, char.y + char.height);
-  
-  if (helicopters.isAllEnemysDead) {
-    waveList.currentWave++;
-  }
+
+  if (helicopters.isAllEnemiesDead)
+    waveList.currentWave = 1;
 }
 
 const wave2 = function() {      
-  if (!airships.isEnemysActive)
-    setTimeout(() => airships.isEnemysActive = true, 4000);
+  airships.activateEnemies(1, 5000, airships.deadEnemies == 0);
+  airships.activateEnemies(4, 5000, airships.deadEnemies == 1);
+  airships.activateEnemies(9, 5000, airships.deadEnemies == 4);
   airships.actions(char.bullets);
-
-  if (airships.isAllEnemysDead) {
-    waveList.currentWave++
-  }
 }
-
+/*
 const wave3 = function() {
   if (!helicopters.isEnemysActive && !airships.isEnemysActive) {
     setTimeout(() => {
@@ -68,10 +81,10 @@ const wave3 = function() {
   helicopters.actions(char.bullets, char.y, char.y + char.height);
   airships.actions(char.bullets);
 }
-
+*/
 waveList.waves.push(wave1);
 waveList.waves.push(wave2);
-waveList.waves.push(wave3);
+//waveList.waves.push(wave3);
 
 function level1() {
   //console.log(waveList.currentWave);
@@ -103,8 +116,12 @@ function charActions() {
   }
 
   for (let index = 0; index < airships.array.length; index++) 
-    if (!airships.array[index].isDead) 
+    if (!airships.array[index].isDead) {
       char.tookDamage(airships.array[index], healthBar);
+      for (const bullet of airships.array[index].bullets) {
+        char.tookDamage(bullet, healthBar);
+      }
+    }
 }
 
 function renderAll() {

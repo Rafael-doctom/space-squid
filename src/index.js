@@ -29,4 +29,10 @@ function updateGameArea() {
   requestAnimationFrame(updateGameArea);
 }
 
+let count = 0;
+
 startGame();
+setInterval(() => {
+  count++
+  console.log(count);
+}, 1000);

@@ -4,7 +4,7 @@ const keyboardControl = {
     down: 83, //40,
     left: 65, //37,
     right: 68, //39,
-    space: 32
+    space: 74//32
   }, 
 
   keysPressed: {
