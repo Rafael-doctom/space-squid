@@ -1,5 +1,6 @@
 import myGameArea from "./other/myGameArea.js";
 import Animation from "./other/Animation.js";
+import syncDelay from "./other/syncDelay.js";
 
 import Component from "./components/Component.js";
 import ImgComponent from "./components/ImgComponent.js";
@@ -15,7 +16,8 @@ import HitBox from "./physics/Hitbox.js";
 const engine = {
   other: {
     myGameArea,
-    Animation
+    Animation,
+    syncDelay
   },
   components: {
     Component,

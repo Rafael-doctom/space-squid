@@ -22,7 +22,7 @@ const char = new Char();
 const helicopters = new EnemyList("Helicopter");
 const airships = new EnemyList("Airship");
 
-//const boss = new SuperAirship(800, 200);
+const boss = new SuperAirship(92, 20);
 
 helicopters.array.push(new Helicopter(100, 10));
 
@@ -49,6 +49,7 @@ airships.array.push(new Airship(100, 40));
 airships.array.push(new Airship(110, 50));
 
 const waveList = new WaveList();
+waveList.currentWave = 2;
 
 const wave1 = function() {
   helicopters.activateEnemies(1, 5000, helicopters.deadEnemies == 0);
@@ -65,30 +66,28 @@ const wave2 = function() {
   airships.activateEnemies(4, 5000, airships.deadEnemies == 1);
   airships.activateEnemies(9, 5000, airships.deadEnemies == 4);
   airships.actions(char.bullets);
+
+  if (airships.isAllEnemiesDead)
+    waveList.currentWave = 2;
 }
-/*
+
 const wave3 = function() {
-  if (!helicopters.isEnemysActive && !airships.isEnemysActive) {
-    setTimeout(() => {
-      helicopters.isEnemysActive = true;
-      airships.isEnemysActive = true;
-    }, 5000);
-    
-    helicopters.ressurectAllEnemys();
-    airships.ressurectAllEnemys();
+  setTimeout(() => boss.isActive = true, 5000);
+  for (let bullet of char.bullets) {
+    boss.tookDamage(bullet);
+    for (let bullet2 of boss.bullets) {
+      if (bullet2.constructor.name == "Missile")
+        bullet2.tookDamage(bullet);
+    }
   }
-  
-  helicopters.actions(char.bullets, char.y, char.y + char.height);
-  airships.actions(char.bullets);
+  boss.behavior(char.x, char.y);
 }
-*/
+
 waveList.waves.push(wave1);
 waveList.waves.push(wave2);
-//waveList.waves.push(wave3);
+waveList.waves.push(wave3);
 
 function level1() {
-  //console.log(waveList.currentWave);
-
   if (!background.music.isPlaying)
     background.music.play();
   
@@ -122,6 +121,13 @@ function charActions() {
         char.tookDamage(bullet, healthBar);
       }
     }
+
+  if (!boss.isDead) {
+    char.tookDamage(boss, healthBar);
+    for (const bullet of boss.bullets) {
+      char.tookDamage(bullet, healthBar);
+    }
+  }
 }
 
 function renderAll() {
@@ -130,6 +136,8 @@ function renderAll() {
   char.renderBullets();
   helicopters.renderAll();
   airships.renderAll();
+  boss.render();
+  boss.renderBullets(char);
   healthBar.render();
 }
 
