@@ -1,5 +1,5 @@
 import engine from "../../../engine/engine.js";
-import Bullet from "../other/Bullet.js";
+import Laser from "../bullets/Laser.js";
 
 const imgPath = "../../src/assets/img/char/"
 
@@ -19,7 +19,7 @@ function Char() {
 
   this.speed = 0.5;
   this.life = 8;
-  this.damage = 2;
+  this.damage = 20;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
@@ -70,7 +70,7 @@ function Char() {
     if (this.bulletDelay == 0) {
       this.attackSound.play();
       this.isAttacking = true;
-      this.bullets.push(new Bullet(this.damage, 3, 5, 1, this.x + 4, this.y + 2, 1));
+      this.bullets.push(new Laser(this.x + 4, this.y + 2, 1));
   
       for (const bullet of this.bullets) {
         bullet.move("right");
@@ -106,6 +106,10 @@ function Char() {
         this.life -= object.damage;
         healthBar.changeImg(this.life);
   
+        if (object.constructor.name == "Missile") {
+          object.tookDamage(this);
+        }
+
         if (this.life == 0)
           this.isDead = true;
         

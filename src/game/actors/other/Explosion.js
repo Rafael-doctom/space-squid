@@ -14,10 +14,18 @@ function Explosion() {
   this.animation = new engine.other.Animation(this, [0, 1, 2, 3], 5);
   this.duration = 20;
 
+  this.actions = function(x, y) {
+    if (this.duration > 0) {
+      this.getCurrentPosition(x, y);
+      this.animation.animate();
+      this.render();
+      this.duration--;
+    }
+  }
+
   this.getCurrentPosition = function(x, y) {
     this.x = x;
     this.y = y;
-    this.duration--;
   }
 
   this.render = function() {

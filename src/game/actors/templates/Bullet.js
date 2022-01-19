@@ -1,14 +1,10 @@
 import engine from "../../../engine/engine.js";
 
-const shotImgPath = {
-  bullet: "../../src/assets/img/attacks/smallBullet.png",
-  laser: "../../src/assets/img/attacks/laser.png"
-};
-
-function Bullet(damage, speed, width = 4, height = 3, x = 0, y = 0, index = 0) {
-  engine.components.Component.call(this, width, height, shotImgPath, x, y, "image", index)
+function Bullet(damage, speed, width, height, x, y, imgPath) {
+  engine.components.Component.call(this, width, height, imgPath, x, y, "image");
 
   this.damage = damage;
+  this.life = damage;
   this.speed = speed;
   this.isMoving = false;
   this.isDead = false;
