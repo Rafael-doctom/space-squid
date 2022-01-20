@@ -26,7 +26,7 @@ function Component(width, height, color, x, y, type, currentImageIndex = 0) {
   this.y = y;
   this.speedX = 0;
   this.speedY = 0;
-  this.update = function(){
+  this.update = function() {
     const ctx = myGameArea.context;
     if (type == "image" || type == "background") {
       ctx.drawImage(this.currentImage,
@@ -49,6 +49,17 @@ function Component(width, height, color, x, y, type, currentImageIndex = 0) {
         this.x = 0;
       }
     }
+  }
+
+  this.rotate = function(angle) {
+    const ctx = myGameArea.context;
+    const rad = angle; 
+    
+    ctx.save()
+    ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+    ctx.rotate(rad);
+    ctx.drawImage(this.currentImage, this.width / 2 * (-1), this.height / 2 * (-1), this.width, this.height);
+    ctx.restore();
   }
 }
 
