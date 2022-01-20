@@ -112,9 +112,9 @@ function SuperAirship(x, y) {
 
     for (const bullet of this.bullets) {
       if (bullet.x > 0) {
+        if (bullet.constructor.name == "Missile") 
+          bullet.getCurrentTargetPosition(char);
         bullet.render();
-        //if (bullet.constructor.name == "Missile")
-          //bullet.getCurrentTargetPosition(char);
       } else {
         bullet.isDead = true;
         bullet.clearmove();
@@ -127,25 +127,23 @@ function SuperAirship(x, y) {
 
   this.attack = function(phase) {
     if (this.bulletDelay == 0 && this.isActive) {
-      /*if (phase == 1)
+      if (phase == 1)
         this.attackPattern1();
       else if (phase == 2)
         this.attackPattern2();
-      else if (phase == 0)*/
+      else if (phase == 0)
         this.attackPattern3();
 
       for (const bullet of this.bullets) {
         bullet.move("left");
       }
 
-      this.bulletDelay = 2000;
-/*
       if (phase == 1) 
         this.bulletDelay = 250;
       else if (phase == 2)
         this.bulletDelay = 120;
       else if (phase == 0)
-        this.bulletDelay = 750;*/
+        this.bulletDelay = 750;
     } 
   }
 
@@ -181,7 +179,6 @@ function SuperAirship(x, y) {
   }
 
   this.tookDamage = function(object) {
-    console.log(this.life);
     let colideCount = 0;
 
     for (let index in this.hitBox) {

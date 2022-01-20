@@ -100,8 +100,13 @@ function Char() {
   }
 
   this.tookDamage = function(object, healthBar) {
+    let type = "simple"
+    if (object.constructor.name == "Missile") {
+      type = "complex"  
+    }
+
     if (!this.isDamaged) {
-      if (engine.physics.detectColision(this, object) && (object.isMoving && !object.isDead)) {
+      if (engine.physics.detectColision(this, object, type) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
         this.life -= object.damage;
         healthBar.changeImg(this.life);

@@ -5,7 +5,7 @@ const imgPath = {
 };
 
 function SmallBullet(x, y) {
-  Bullet.call(this, 2, 2, 2, 1, x, y, imgPath);
+  Bullet.call(this, 2, 1.5, 2, 1, x, y, imgPath);
 }
 
 export default SmallBullet;
