@@ -35,10 +35,10 @@ function SuperAirship(x, y) {
   this.cannonDirection = "up";
   this.currentPhase = 1;
   this.hitBox = {
-    upWing: new engine.physics.HitBox(16, 8, 16),
-    cockpit: new engine.physics.HitBox(15, 8, 80),
-    body: new engine.physics.HitBox(16, 16, 16),
-    downWing: new engine.physics.HitBox(16, 8, 16)
+    upWing: new engine.physics.HitBox(16, 8, 16, 2),
+    cockpit: new engine.physics.HitBox(15, 8, 0, 2),
+    body: new engine.physics.HitBox(16, 16, 0, 2),
+    downWing: new engine.physics.HitBox(16, 8, 16, 2)
   }
   this.deathExplosion = new Explosion(this.x, this.y);
   this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
@@ -46,10 +46,8 @@ function SuperAirship(x, y) {
   this.a = true;
 
   this.render = function() {   
-    if (this.isDead && this.deathExplosion.duration > 0) {
-      this.deathExplosion.getCurrentPosition(this.x, this.y);
-      this.deathExplosion.animation.animate();     
-      this.deathExplosion.render();
+    if (this.isDead) {
+      this.deathExplosion.actions(this.x, this.y)
     } else if (!this.isDead && this.isActive) {
       this.hitBox.upWing.getCurrentPosition(this.x + this.width - 16, this.y);
       this.hitBox.body.getCurrentPosition(this.x + 16, this.y + 8);
@@ -67,24 +65,19 @@ function SuperAirship(x, y) {
     }
 
     this.isMoving = true;
-
     this.speedY = this.direction == "up" ? -this.speed : this.speed;
 
-    if (this.y == 2) {
+    if (this.y == 2) 
       this.direction = "down";
-    }
-
-    if (this.y == myGameArea.height - 41) {
+    if (this.y == myGameArea.height - 41) 
       this.direction = "up";    
-    }
   }
 
   this.behavior = async function() {
-    if (this.isActive) {
-      if (this.a && this.b) {
+    if (this.isActive && !this.isDead) {
+      if (this.a && this.b) 
         await engine.other.syncDelay(1000);
-      }
-     
+      
       this.move(this.currentPhase);
       this.attack(this.currentPhase);
       
@@ -94,7 +87,7 @@ function SuperAirship(x, y) {
         setTimeout(() => {
           this.currentPhase = 0;
           setTimeout(() => this.currentPhase = 2, 1000);
-        }, 5000);
+        }, 3000);
       }
       if (this.currentPhase == 2 && this.b) {
         this.b = false;
@@ -127,11 +120,11 @@ function SuperAirship(x, y) {
 
   this.attack = function(phase) {
     if (this.bulletDelay == 0 && this.isActive) {
-      if (phase == 1)
+      if (phase == 1) 
         this.attackPattern1();
-      else if (phase == 2)
+      if (phase == 2) 
         this.attackPattern2();
-      else if (phase == 0)
+      if (phase == 0)
         this.attackPattern3();
 
       for (const bullet of this.bullets) {
@@ -156,22 +149,19 @@ function SuperAirship(x, y) {
       this.bullets.push(new SmallBullet(this.x + 16, this.y + 26));
       this.bullets.push(new SmallBullet(this.x + 16, this.y + 30));
     }
-    if (this.hitBox.cockpit.life > 0) {
-      if (this.cannonDirection == "up") {
-        this.bullets.push(new BigBullet(this.x - 2, this.y + 10));
-        this.cannonDirection = "down";
-      } else if (this.cannonDirection == "down") {
-        this.bullets.push(new BigBullet(this.x - 2, this.y + 19));
-        this.cannonDirection = "up";
-      }
+
+    if (this.cannonDirection == "up") {
+      this.bullets.push(new BigBullet(this.x - 2, this.y + 10));
+      this.cannonDirection = "down";
+    } else if (this.cannonDirection == "down") {
+      this.bullets.push(new BigBullet(this.x - 2, this.y + 19));
+      this.cannonDirection = "up";
     }
   }
 
   this.attackPattern2 = function() {
-    if (this.hitBox.cockpit.life > 0) {
-      this.bullets.push(new BigBullet(this.x - 2, this.y + 10));
-      this.bullets.push(new BigBullet(this.x - 2, this.y + 19));
-    }
+    this.bullets.push(new BigBullet(this.x - 2, this.y + 10));
+    this.bullets.push(new BigBullet(this.x - 2, this.y + 19));
   }
 
   this.attackPattern3 = function() {
@@ -179,16 +169,17 @@ function SuperAirship(x, y) {
   }
 
   this.tookDamage = function(object) {
-    let colideCount = 0;
-
-    for (let index in this.hitBox) {
-      if (engine.physics.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive) {
-        colideCount++;
-        this.hitBox[index].life -= object.damage;
-      }
-    }
- 
     if (!this.isDamaged) {
+      let colideCount = 0;
+      console.log(this.life)
+
+      for (let index in this.hitBox) {
+        if (engine.physics.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive) {
+          this.hitBox[index].life -= object.damage;
+          colideCount++;
+        }
+      }
+ 
       if (colideCount > 0 && object.isMoving && !object.isDead) {
         this.isDamaged = true;
         this.life -= object.damage;
@@ -197,7 +188,7 @@ function SuperAirship(x, y) {
         if (object.life <= 0) 
           object.isDead = true;
   
-        if (this.life == 0) {
+        if (this.life <= 0) {
           this.deathSound.play();     
           this.isDead = true;
         }
@@ -214,41 +205,19 @@ function SuperAirship(x, y) {
   }
 
   this.changeState = function() {
-    this.transitionFromWingDestroyed();
-    this.transitionFromCockpitDestroyed();
-  }
-
-  this.transitionFromWingDestroyed = function() {
-    if (this.hitBox.upWing.life <= 0 && this.hitBox.downWing.life <= 0 && this.hitBox.cockpit.life > 0) {
+    if (this.hitBox.upWing.life <= 0 && this.hitBox.downWing.life <= 0) {
       this.currentImage = this.images.noWings;
       this.hitBox.upWing.isActive = false;
       this.hitBox.downWing.isActive = false;
     } else if (this.hitBox.upWing.life <= 0) {
       this.currentImage = this.images.noUpWing;
       this.hitBox.upWing.isActive = false;
-    }
-    else if (this.hitBox.downWing.life <= 0) {
+    } else if (this.hitBox.downWing.life <= 0) {
       this.currentImage = this.images.noDownWing;
       this.hitBox.downWing.isActive = false;
     } else {
       this.currentImage = this.images.idle;
     }
-  }
-
-  this.transitionFromCockpitDestroyed = function() {
-    if (this.hitBox.cockpit.life <= 0 && this.hitBox.upWing.life <= 0 && this.hitBox.downWing.life <= 0) {
-      this.currentImage = this.images.noLasersNoWings;
-      this.hitBox.upWing.isActive = false;
-      this.hitBox.downWing.isActive = false;
-    } else if (this.hitBox.upWing.life <= 0 && this.hitBox.cockpit.life <= 0) {
-      this.currentImage = this.images.noLasersNoUpWing;
-      this.hitBox.upWing.isActive = false;
-    } else if (this.hitBox.downWing.life <= 0 && this.hitBox.cockpit.life <= 0) {
-      this.currentImage = this.images.noLasersNoDownWing;
-      this.hitBox.downWing.isActive = false;
-    } else if (this.hitBox.cockpit.life <= 0) {
-      this.currentImage = this.images.noLasers;
-    }  
   }
 } 
 
