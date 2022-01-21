@@ -14,7 +14,7 @@ function Missile(x, y) {
   this.animation = new engine.other.Animation(this, [0, 1], 5);
   this.deathExplosion = new Explosion(this.x, this.y);
   this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
-  this.life = 4;
+  this.life = 6;
   this.targetX = null;
   this.targetY = null;
   this.angle = 0;

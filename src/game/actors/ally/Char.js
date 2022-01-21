@@ -18,8 +18,8 @@ function Char() {
   engine.components.Component.call(this, 7, 7, charImgPath, 21, 21, "image");
 
   this.speed = 0.5;
-  this.life = 8;
-  this.damage = 20;
+  this.life = 2;
+  this.damage = 2;
   this.isAttacking = false;
   this.isDamaged = false;
   this.isMoving = false;
@@ -73,6 +73,7 @@ function Char() {
       this.bullets.push(new Laser(this.x + 4, this.y + 2, 1));
   
       for (const bullet of this.bullets) {
+        bullet.damage = 4;
         bullet.move("right");
       }
 

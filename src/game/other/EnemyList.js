@@ -1,9 +1,19 @@
-function EnemyList(type, isEnemysActive = false) {
+import Helicopter from "../actors/enemy/Helicopter.js"
+import Airship from "../actors/enemy/Airship.js";
+
+function EnemyList(type) {
   this.array = [];
   this.type = type;
   this.activeEnemies = 0;
   this.deadEnemies = 0;
   this.isAllEnemiesDead = false;
+
+  this.addEnemy = function(x, y) {
+    if (type == "Helicopter")
+      this.array.push(new Helicopter(x, y));
+    else if (type == "Airship")
+      this.array.push(new Airship(x, y));
+  }
 
   this.activateEnemies = function(quantity, time, condition = true) {
     if (condition)
