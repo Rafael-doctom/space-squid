@@ -1,9 +1,11 @@
 import engine from "./engine/engine.js";
+import UI from "./UI/UI.js";
 
-import level1 from "./game/levels/level1.js";
-import Title from "./UI/screens/Title.js";
+import Level0 from "./game/levels/level0.js";
 
-let title = null;
+const levels = [
+  new Level0()
+];
 
 window.addEventListener("click", () => {
   myGameArea.canvas.requestFullscreen();
@@ -11,28 +13,35 @@ window.addEventListener("click", () => {
 
 function startGame() {
   engine.other.myGameArea.start();
-  title = new Title();
   engine.inputs.keyboardControl.initEvents();
   engine.inputs.touchControl.initEvents();
   updateGameArea();
 }
 
 function updateGameArea() {
-  if (title.choice == "none") {
-    title.render();
-    title.movement(engine.inputs.keyboardControl);
+  if (UI.title.cursor.choice == "none")
+    UI.title.render();
+  
+  if (UI.title.cursor.choice == "start") {
+    levels[0].start();
+    if (levels[0].loosed) {
+      UI.gameOver.render();
+      if (UI.gameOver.cursor.choice == "restart") {
+        levels[0] = new Level0();
+      }
+    }
   }
 
-  // (title.choice == "start")
-    level1();
   engine.inputs.touchControl.renderButtons();
   requestAnimationFrame(updateGameArea);
 }
 
+startGame();
+/*
 let count = 0;
 
-startGame();
 setInterval(() => {
   count++
   console.log(count);
 }, 1000);
+*/
