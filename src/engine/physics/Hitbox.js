@@ -1,18 +1,20 @@
 import myGameArea from "../other/myGameArea.js";
 
-function HitBox(width, height, life) {
+function HitBox(width, height, life, damage) {
   this.width = width;
   this.height = height;
   this.x = null;
   this.y = null;
   this.life = life;
+  this.damage = damage;
   this.isActive = true;
+  this.isMoving = false;
 
   this.getCurrentPosition = function(x , y) {
     if (this.isActive) {
       this.x = x;
       this.y = y;
-      //this.render();
+      this.isMoving = true;
     }
   }
 
