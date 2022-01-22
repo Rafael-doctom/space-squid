@@ -1,22 +1,25 @@
+import game from "../../shared/game.js"
+
 import Component from "../components/Component.js";
 import detectColision from "../physics/detectColision.js";
 
 const touchControl = {
   touches: [],
   isTouchDevice: false,
+  isPressed: false,
 
   joystick: {
-    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image"),
-    in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image"),
-    shot: new Component(24, 24, {idle: "../../src/assets/img/controls/shot.png"}, 102, 46, "image"),
+    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image", game),
+    in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image", game),
+    shot: new Component(16, 16, {idle: "../../src/assets/img/controls/shot.png"}, 105, 50, "image", game),
   },
 
   buttons: {
-    up: new Component(24, 8, "red", 2, 46),
-    down: new Component(24, 8, "green", 2, 62),
-    left: new Component(8, 24, "orange", 2, 46),
-    right: new Component(8, 24, "yellow", 18, 46),
-    space: new Component(24, 24, "red", 102, 46)
+    up: new Component(24, 8, "red", 2, 46, game),
+    down: new Component(24, 8, "green", 2, 62, game),
+    left: new Component(8, 24, "orange", 2, 46, game),
+    right: new Component(8, 24, "yellow", 18, 46, game),
+    space: new Component(16, 16, "red", 105, 50, game)
   },
 
   buttonsPressed: {
@@ -64,7 +67,7 @@ const touchControl = {
     }); 
 
     window.addEventListener("touchmove", e => {
-      this.touchStartHandler(e);
+      this.touchMoveHandler(e);
     }); 
 
     window.addEventListener("touchend", e => {
@@ -74,11 +77,17 @@ const touchControl = {
 
   touchStartHandler: function(e) {
     this.testButtons(e.targetTouches);
+    //this.testButtons2(e.targetTouches);
+  },
+
+  touchMoveHandler: function(e) {
+    this.testButtons(e.targetTouches);
+    //this.testButtons2(e.targetTouches);
   },
 
   touchEndHandler: function(e) {  
     this.testButtons(e.targetTouches);
-    this.resetIn();
+    //this.testButtons2(e.targetTouches);
   },
 
   testButtons: function(targetTouches) {
@@ -90,24 +99,60 @@ const touchControl = {
       button = this.buttons[Object.keys(this.buttons)[index]];
       buttonActive = false;
 
-      for (let index = targetTouches.length - 1; index > -1; --index) {
-        touch = targetTouches[index]
-        touch.x = Math.floor(touch.pageX * xRatio) - 4;
-        touch.y = Math.floor(touch.pageY * yRatio) - 4;
-        touch.width = 8;
-        touch.height = 8;
-        
-        
-        if (detectColision(touch, button)) {
-          if (button.name != "space")
-            this.moveIn(touch.x, touch.y);
+      touch = targetTouches[0]      
+      if (!touch) {
+        this.buttonsPressed.up = false;
+        this.buttonsPressed.down = false;
+        this.buttonsPressed.left = false;
+        this.buttonsPressed.right = false;
+        this.isPressed = false;
+        this.resetIn();
+        break;
+      }
+
+      touch.x = Math.floor(touch.pageX * xRatio) - 4;
+      touch.y = Math.floor(touch.pageY * yRatio) - 4;
+      touch.width = 4;
+      touch.height = 4;
+      
+      if (detectColision(touch, this.joystick.out))
+        this.isPressed = true;
+
+      if (this.isPressed) {
+        this.moveIn(touch.x, touch.y);
+        let in2 = {
+          x: this.joystick.in.x,
+          y: this.joystick.in.y,
+          width: 4,
+          height: 4
+        }
+        if (detectColision(in2, button)) 
           buttonActive = true;
-          break;
-        } 
+        else
+          buttonActive = false;
       }
 
       this.buttonsPressed[Object.keys(this.buttonsPressed)[index]] = buttonActive;
     } 
+  },
+
+  testButtons2: function(targetTouches) {
+    const xRatio = 128 / innerWidth;
+    const yRatio = 72 / innerHeight;
+    let touch;
+
+    touch = targetTouches[1]
+
+    touch.x = Math.floor(touch.pageX * xRatio) - 4;
+    touch.y = Math.floor(touch.pageY * yRatio) - 4;
+    touch.width = 4;
+    touch.height = 4;
+
+    if (detectColision(touch, this.buttons.space)) {
+      this.buttonsPressed.space = true;
+    } else {
+      this.buttonsPressed.space = false;
+    }
   },
 
   moveIn: function(x, y) {

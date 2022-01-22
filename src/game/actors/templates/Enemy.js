@@ -1,8 +1,10 @@
-import engine from "../../../engine/engine.js"
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
+
 import Explosion from "../other/Explosion.js";
 
 function Enemy(speed, life, damage, width, height, x, y, imgPath) {
-  engine.components.Component.call(this, width, height, imgPath, x, y, "image");
+  Core.Component.call(this, width, height, imgPath, x, y, "image", game);
 
   this.speed = speed;
   this.life = life;
@@ -14,7 +16,7 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
   this.bullets = [];
   this.bulletDelay = 0;
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   
   this.render = function() {   
     if (this.isDead) {
@@ -46,7 +48,7 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
 
   this.tookDamage = function(object) {
     if (!this.isDamaged) {
-      if (engine.physics.detectColision(this, object) && object.isMoving && !object.isDead) {
+      if (Core.detectColision(this, object) && object.isMoving && !object.isDead) {
         this.isDamaged = true;
         this.life -= object.damage;
         object.life -= this.damage;

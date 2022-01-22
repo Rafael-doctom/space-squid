@@ -12,11 +12,11 @@
 
 import ImgComponent from "./ImgComponent.js";
 
-function Component(width, height, color, x, y, type, currentImageIndex = 0) {
+function Component(width, height, color, x, y, type, gameArea) {
   this.type = type;
   if (type == "image" || type == "background") {
     this.images = new ImgComponent(color);
-    this.currentImage = this.images[Object.keys(this.images)[currentImageIndex]];
+    this.currentImage = this.images[Object.keys(this.images)[0]];
   }
   this.width = width;
   this.height = height;
@@ -27,7 +27,7 @@ function Component(width, height, color, x, y, type, currentImageIndex = 0) {
   this.speedX = 0;
   this.speedY = 0;
   this.update = function() {
-    const ctx = myGameArea.context;
+    const ctx = gameArea.canvas.getContext("2d");
     if (type == "image" || type == "background") {
       ctx.drawImage(this.currentImage,
         this.x,
@@ -52,7 +52,7 @@ function Component(width, height, color, x, y, type, currentImageIndex = 0) {
   }
 
   this.rotate = function(angle) {
-    const ctx = myGameArea.context;
+    const ctx = gameArea.context;
     const rad = angle; 
     
     ctx.save()

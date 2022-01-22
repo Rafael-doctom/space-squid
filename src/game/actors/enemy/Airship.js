@@ -1,3 +1,5 @@
+import game from "../../../shared/game.js";
+
 import Enemy from "../templates/Enemy.js";
 import SmallBullet from "../bullets/SmallBullet.js";
 
@@ -27,7 +29,7 @@ function Airship(x, y) {
     this.speedX = -this.speed;
 
     if (this.x < 0) 
-      this.x = myGameArea.width;
+      this.x = game.width;
   }
 }
 

@@ -1,7 +1,8 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
 
 function Bullet(damage, speed, width, height, x, y, imgPath) {
-  engine.components.Component.call(this, width, height, imgPath, x, y, "image");
+  Core.Component.call(this, width, height, imgPath, x, y, "image", game);
 
   this.damage = damage;
   this.life = damage;

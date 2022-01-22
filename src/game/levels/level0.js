@@ -1,4 +1,5 @@
-import engine from "../../engine/engine.js";
+import Core from "../../core/Core.js";
+import game from "../../shared/game.js";
 
 import Background from "../actors/other/Background.js";
 import Char from "../actors/ally/Char.js";
@@ -29,12 +30,13 @@ function Level0() {
     if (!this.char.isDead) {
       if (!this.background.music.isPlaying)
         this.background.music.play();
-      myGameArea.clear();
+      game.clear();
       this.charActions();
       this.waveList.start();
       this.renderAll();
     } else {
       this.loosed = true;
+      this.background.music.stop();
     }
   }
 
@@ -50,6 +52,7 @@ function Level0() {
   }
 
   this.init = function() {
+    this.waveList.currentWave = 2;
     this.helicopters.addEnemy(100, 10);
     this.helicopters.addEnemy(80, 30);
     this.helicopters.addEnemy(90, 20);
@@ -77,7 +80,7 @@ function Level0() {
 
   this.charActions = function() {
     this.char.clearmove();
-    this.char.movement(engine.inputs.keyboardControl, engine.inputs.touchControl);
+    this.char.movement(Core.KeyboardControl, Core.TouchControl);
 
     for (let index = 0; index < this.helicopters.array.length; index++) {
       if (!this.helicopters.array[index].isDead) {

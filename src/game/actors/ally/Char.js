@@ -1,4 +1,6 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
+
 import Laser from "../bullets/Laser.js";
 
 const imgPath = "../../src/assets/img/char/"
@@ -15,10 +17,10 @@ const charImgPath = {
 }
 
 function Char() {
-  engine.components.Component.call(this, 7, 7, charImgPath, 21, 21, "image");
+  Core.Component.call(this, 7, 7, charImgPath, 21, 21, "image", game);
 
   this.speed = 0.5;
-  this.life = 2;
+  this.life = 8;
   this.damage = 2;
   this.isAttacking = false;
   this.isDamaged = false;
@@ -28,10 +30,10 @@ function Char() {
   this.isDead = false;
   this.bullets = [];
   this.bulletDelay = 0;
-  this.idleAttackAnimation = new engine.other.Animation(this, [3, 0], 8);
-  this.forwardAttackAnimation = new engine.other.Animation(this, [4, 1], 8);
-  this.backwardAttackAnimation = new engine.other.Animation(this, [5, 2], 8);
-  this.attackSound = new engine.components.SoundComponent("../src/assets/sound/char/attack.wav");
+  this.idleAttackAnimation = new Core.Animation(this, [3, 0], 8);
+  this.forwardAttackAnimation = new Core.Animation(this, [4, 1], 8);
+  this.backwardAttackAnimation = new Core.Animation(this, [5, 2], 8);
+  this.attackSound = new Core.SoundComponent("../src/assets/sound/char/attack.wav");
 
   this.render = function() { 
     if (this.isDamaged) {
@@ -54,7 +56,7 @@ function Char() {
     this.bullets = this.bullets.filter(bullet => !bullet.isDead);
 
     for (const bullet of this.bullets) {
-      if (bullet.x < myGameArea.width) {
+      if (bullet.x < game.width) {
         bullet.render();
       } else {
         bullet.isDead = true;
@@ -73,7 +75,6 @@ function Char() {
       this.bullets.push(new Laser(this.x + 4, this.y + 2, 1));
   
       for (const bullet of this.bullets) {
-        bullet.damage = 4;
         bullet.move("right");
       }
 
@@ -107,7 +108,7 @@ function Char() {
     }
 
     if (!this.isDamaged) {
-      if (engine.physics.detectColision(this, object, type) && (object.isMoving && !object.isDead)) {
+      if (Core.detectColision(this, object, type) && (object.isMoving && !object.isDead)) {
         this.isDamaged = true;
         this.life -= object.damage;
         healthBar.changeImg(this.life);
@@ -174,8 +175,8 @@ function Char() {
       this.x = 0;
       return; 
     }
-    if (this.x > myGameArea.width -7) {
-      this.x = myGameArea.width - 7;
+    if (this.x > game.width -7) {
+      this.x = game.width - 7;
       return;
     }  
     if (this.y < 0) {
@@ -183,8 +184,8 @@ function Char() {
       return;
     }
     
-    if (this.y > myGameArea.height - 15) {
-      this.y = myGameArea.height - 15;
+    if (this.y > game.height - 15) {
+      this.y = game.height - 15;
       return;
     }
   

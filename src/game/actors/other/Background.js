@@ -1,17 +1,19 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
 
 const backgroundImgPath = {idle: "../../src/assets/img/background/sky.png"};
 
 function Background() {
-  engine.components.Component.call(
+  Core.Component.call(
     this, 
-    myGameArea.width,
-    myGameArea.height,
+    game.width,
+    game.height,
     backgroundImgPath,
-    0, 0, "background"
+    0, 0, "background",
+    game
   )
 
-  this.music = new engine.components.SoundComponent("../src/assets/sound/background/sky2.mp3", 0.35, true);
+  this.music = new Core.SoundComponent("../src/assets/sound/background/sky2.mp3", 0.35, true);
 
   this.render = function() {
     this.speedX = -0.25;

@@ -1,6 +1,5 @@
-import myGameArea from "./other/myGameArea.js";
+import GameArea from "./other/GameArea.js";
 import Animation from "./other/Animation.js";
-import syncDelay from "./other/syncDelay.js";
 
 import Component from "./components/Component.js";
 import ImgComponent from "./components/ImgComponent.js";
@@ -13,26 +12,17 @@ import touchControl from "./inputs/touchControl.js";
 import detectColision from "./physics/detectColision.js";
 import HitBox from "./physics/Hitbox.js";
 
-const engine = {
-  other: {
-    myGameArea,
-    Animation,
-    syncDelay
-  },
-  components: {
-    Component,
-    ImgComponent,
-    SoundComponent,
-    Text
-  },
-  inputs: {
-    keyboardControl,
-    touchControl
-  },
-  physics: {
-    detectColision,
-    HitBox
-  }
+class Core {
+  static GameArea = GameArea;
+  static Animation = Animation;
+  static Component = Component;
+  static ImgComponent = ImgComponent;
+  static SoundComponent = SoundComponent;
+  static Text = Text;
+  static KeyboardControl = keyboardControl;
+  static TouchControl = touchControl;
+  static detectColision = detectColision;
+  static HitBox = HitBox;
 }
 
-export default engine;
+export default Core;

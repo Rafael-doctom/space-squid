@@ -1,9 +1,12 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
+
+import syncDelay from "../../../utils/syncDelay.js";
+
 import Explosion from "../other/Explosion.js";
 import SmallBullet from "../bullets/SmallBullet.js";
 import BigBullet from "../bullets/BigBullet.js";
 import Missile from "../bullets/Missile.js";
-import myGameArea from "../../../engine/other/myGameArea.js";
 
 const imgPath = "../../../src/assets/img/enemy/superAirship/";
 
@@ -20,7 +23,7 @@ const superAirshipImgPath = {
 };
 
 function SuperAirship(x, y) {
-  engine.components.Component.call(this, 32, 32, superAirshipImgPath, x, y, "image");
+  Core.Component.call(this, 32, 32, superAirshipImgPath, x, y, "image", game);
 
   this.speed = 0.5;
   this.life = 128;
@@ -35,13 +38,13 @@ function SuperAirship(x, y) {
   this.cannonDirection = "up";
   this.currentPhase = 1;
   this.hitBox = {
-    upWing: new engine.physics.HitBox(16, 8, 16, 2),
-    cockpit: new engine.physics.HitBox(15, 8, 0, 2),
-    body: new engine.physics.HitBox(16, 16, 0, 2),
-    downWing: new engine.physics.HitBox(16, 8, 16, 2)
+    upWing: new Core.HitBox(16, 8, 16, 2),
+    cockpit: new Core.HitBox(15, 8, 0, 2),
+    body: new Core.HitBox(16, 16, 0, 2),
+    downWing: new Core.HitBox(16, 8, 16, 2)
   }
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   this.b = true;
   this.a = true;
 
@@ -69,14 +72,14 @@ function SuperAirship(x, y) {
 
     if (this.y == 2) 
       this.direction = "down";
-    if (this.y == myGameArea.height - 41) 
+    if (this.y == game.height - 41) 
       this.direction = "up";    
   }
 
   this.behavior = async function() {
     if (this.isActive && !this.isDead) {
       if (this.a && this.b) 
-        await engine.other.syncDelay(1000);
+        await syncDelay(1000);
       
       this.move(this.currentPhase);
       this.attack(this.currentPhase);
@@ -171,10 +174,10 @@ function SuperAirship(x, y) {
   this.tookDamage = function(object) {
     if (!this.isDamaged) {
       let colideCount = 0;
-      console.log(this.life)
+      //console.log(this.life)
 
       for (let index in this.hitBox) {
-        if (engine.physics.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive) {
+        if (Core.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive) {
           this.hitBox[index].life -= object.damage;
           colideCount++;
         }

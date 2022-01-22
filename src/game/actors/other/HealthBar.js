@@ -1,4 +1,5 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
 
 const imgPath = "../../src/assets/img/healthBar/";
 
@@ -11,7 +12,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  engine.components.Component.call(this, 6, 17, healthBarImgPath, 1, 1, "image");
+  Core.Component.call(this, 6, 17, healthBarImgPath, 1, 1, "image", game);
 
   this.render = function() {
     this.newPos();

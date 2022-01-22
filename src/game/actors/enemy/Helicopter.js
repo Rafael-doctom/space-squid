@@ -1,4 +1,5 @@
-import engine from "../../../engine/engine.js"
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
 
 import Enemy from "../templates/Enemy.js";
 import SmallBullet from "../bullets/SmallBullet.js";
@@ -14,7 +15,7 @@ const helicopterImgPath = {
 
 function Helicopter(x, y) {
   Enemy.call(this, 0.5, 8, 2, 12, 7, x, y, helicopterImgPath);
-  this.animation = new engine.other.Animation(this, [0, 1, 2, 1], 2);
+  this.animation = new Core.Animation(this, [0, 1, 2, 1], 2);
 
   this.move = function() {
     this.isMoving = true;
@@ -22,7 +23,7 @@ function Helicopter(x, y) {
 
     if (this.y == 0) 
       this.direction = "down";
-    if (this.y == myGameArea.height - 15)
+    if (this.y == game.height - 15)
       this.direction = "up";
   }
 

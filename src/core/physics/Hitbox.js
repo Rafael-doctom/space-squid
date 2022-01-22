@@ -1,6 +1,4 @@
-import myGameArea from "../other/myGameArea.js";
-
-function HitBox(width, height, life, damage) {
+function HitBox(width, height, life, damage, gameArea) {
   this.width = width;
   this.height = height;
   this.x = null;
@@ -19,7 +17,7 @@ function HitBox(width, height, life, damage) {
   }
 
   this.render = function() {
-    const ctx = myGameArea.canvas.getContext("2d");
+    const ctx = gameArea.context;
     ctx.fillStyle = "red";
     ctx.fillRect(this.x, this.y, this.width, this.height)
   }

@@ -1,9 +1,10 @@
-import engine from "../../engine/engine.js";
+import Core from "../../core/Core.js";
+import game from "../../shared/game.js";
 
 const cursorImgPath = {idle: "../../../src/assets/img/other/cursor.png"};
 
 function Cursor(x, y, choices, move) {
-  engine.components.Component.call(this, 6, 4, cursorImgPath, x, y, "image");
+  Core.Component.call(this, 6, 4, cursorImgPath, x, y, "image", game);
   this.delay = false;
   this.choice = "none";
   this.choices = choices
@@ -14,13 +15,13 @@ function Cursor(x, y, choices, move) {
     this.update();
   }
 
-  this.movement = function(keyboardControl) {
+  this.movement = function(keyboardControl, touchControl) {
     if (!move) {
-      if (keyboardControl.keysPressed.upPressed) {this.move("up")}
-      if (keyboardControl.keysPressed.downPressed) {this.move("down")}
+      if (keyboardControl.keysPressed.upPressed || touchControl.buttonsPressed.up) {this.move("up")}
+      if (keyboardControl.keysPressed.downPressed || touchControl.buttonsPressed.down) {this.move("down")}
     }
 
-    if (keyboardControl.keysPressed.spacePressed) {this.select()}
+    if (keyboardControl.keysPressed.spacePressed || touchControl.buttonsPressed.space) {this.select()}
   }
 
   this.move = function(dir) {

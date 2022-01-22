@@ -1,23 +1,25 @@
-import engine from "../../engine/engine.js";
+import Core from "../../core/Core.js"
+import game from "../../shared/game.js";
+
 import Screen from "../template/Screen.js";
 import Cursor from "../other/Cursor.js";
 
 function GameOver() {
   Screen.call(this, "#332c50");
-  this.heading = new engine.components.Text("12px", "#e2f3e4", "center");
-  this.content = new engine.components.Text("6px", "#e2f3e4", "center");
-  this.cursor = new Cursor(myGameArea.width / 4, 38, ["restart"], true);
+  this.heading = new Core.Text("12px", "#e2f3e4", "center", game);
+  this.content = new Core.Text("6px", "#e2f3e4", "center", game);
+  this.cursor = new Cursor(game.width / 4, 38, ["restart"], true);
 
   this.render = function() {
     this.update();
     this.write();
-    this.cursor.movement(engine.inputs.keyboardControl);
+    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
     this.cursor.render();
   }
   
   this.write = function() {
-    this.heading.write("Game Over", engine.other.myGameArea.width / 2, 25);
-    this.content.write("Restart", engine.other.myGameArea.width / 2, 42);
+    this.heading.write("Game Over", game.width / 2, 25);
+    this.content.write("Restart", game.width / 2, 42);
   }
 }
 

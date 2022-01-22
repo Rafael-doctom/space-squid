@@ -1,4 +1,5 @@
-import engine from "../../../engine/engine.js";
+import Core from "../../../core/Core.js";
+import game from "../../../shared/game.js";
 
 const imgPath = "../../../src/assets/img/effects/explosion/"
 
@@ -10,8 +11,8 @@ const explosionImgPath = {
 }
 
 function Explosion() {
-  engine.components.Component.call(this, 12, 12, explosionImgPath, 0, 0, "image");
-  this.animation = new engine.other.Animation(this, [0, 1, 2, 3], 5);
+  Core.Component.call(this, 12, 12, explosionImgPath, 0, 0, "image", game);
+  this.animation = new Core.Animation(this, [0, 1, 2, 3], 5);
   this.duration = 20;
 
   this.actions = function(x, y) {

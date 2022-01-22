@@ -1,6 +1,7 @@
-import engine from "./engine/engine.js";
-import UI from "./UI/UI.js";
+import game from "./shared/game.js";
+import Core from "./core/Core.js";
 
+import UI from "./UI/UI.js";
 import Level0 from "./game/levels/level0.js";
 
 const levels = [
@@ -8,13 +9,13 @@ const levels = [
 ];
 
 window.addEventListener("click", () => {
-  myGameArea.canvas.requestFullscreen();
+  game.canvas.requestFullscreen();
 });
 
 function startGame() {
-  engine.other.myGameArea.start();
-  engine.inputs.keyboardControl.initEvents();
-  engine.inputs.touchControl.initEvents();
+  game.init();
+  Core.KeyboardControl.initEvents();
+  Core.TouchControl.initEvents();
   updateGameArea();
 }
 
@@ -32,7 +33,7 @@ function updateGameArea() {
     }
   }
 
-  engine.inputs.touchControl.renderButtons();
+  Core.TouchControl.renderButtons();
   requestAnimationFrame(updateGameArea);
 }
 

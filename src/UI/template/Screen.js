@@ -1,14 +1,13 @@
-import engine from "../../engine/engine.js";
-
-const cursorImgPath = {idle: "../../src/assets/img/other/cursor.png"};
+import Core from "../../core/Core.js";
+import game from "../../shared/game.js"
 
 function Screen(color) {
-  engine.components.Component.call(
+  Core.Component.call(
     this,
-    myGameArea.width,
-    myGameArea.height,
+    game.width,
+    game.height,
     color,
-    0, 0
+    0, 0, "none", game
   );
 /*
   this.heading = new engine.components.Text("14px", "#94e344", "center");

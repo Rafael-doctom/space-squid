@@ -1,7 +1,9 @@
+import Core from "../../../core/Core.js";
+
 import Bullet from "../templates/Bullet.js";
 import Explosion from "../other/Explosion.js";
-import engine from "../../../engine/engine.js";
-import myGameArea from "../../../engine/other/myGameArea.js";
+
+import angler from "../../../utils/angler.js";
 
 const imgPath = {
   frame1: "../../src/assets/img/attacks/missile1.png",
@@ -11,9 +13,9 @@ const imgPath = {
 
 function Missile(x, y) {
   Bullet.call(this, 2, 0.5, 10, 4, x, y, imgPath);
-  this.animation = new engine.other.Animation(this, [0, 1], 5);
+  this.animation = new Core.Animation(this, [0, 1], 5);
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new engine.components.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   this.life = 6;
   this.targetX = null;
   this.targetY = null;
@@ -32,13 +34,6 @@ function Missile(x, y) {
   }
 
   this.getCurrentTargetPosition = function(char) {
-    function angler(cx, cy, ex, ey) {
-      let dy = ey - cy;
-      let dx = ex - cx;
-      let theta = Math.atan2(dy, dx);
-      return theta;
-    }
-  
     this.targetX = char.x;
     this.targetY = char.y;
     
@@ -78,7 +73,7 @@ function Missile(x, y) {
 
   this.tookDamage = function(object) {
     if (!this.isDamaged) {
-      if (engine.physics.detectColision(this, object, "complex") && !object.isDead) {
+      if (Core.detectColision(this, object, "complex") && !object.isDead) {
         this.isDamaged = true;
         if (object.constructor.name == "Char") 
           this.life = 0;
