@@ -12,17 +12,17 @@ import touchControl from "./inputs/touchControl.js";
 import detectColision from "./physics/detectColision.js";
 import HitBox from "./physics/Hitbox.js";
 
-class Core {
-  static GameArea = GameArea;
-  static Animation = Animation;
-  static Component = Component;
-  static ImgComponent = ImgComponent;
-  static SoundComponent = SoundComponent;
-  static Text = Text;
-  static KeyboardControl = keyboardControl;
-  static TouchControl = touchControl;
-  static detectColision = detectColision;
-  static HitBox = HitBox;
-}
+function Core() {}
+
+Core.GameArea = GameArea;
+Core.Animation = Animation;
+Core.Component = Component;
+Core.ImgComponent = ImgComponent;
+Core.SoundComponent = SoundComponent;
+Core.Text = Text;
+Core.KeyboardControl = keyboardControl;
+Core.TouchControl = touchControl;
+Core.detectColision = detectColision;
+Core.HitBox = HitBox;
 
 export default Core;
