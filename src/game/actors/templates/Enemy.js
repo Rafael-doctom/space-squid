@@ -1,10 +1,9 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 import Explosion from "../other/Explosion.js";
 
 function Enemy(speed, life, damage, width, height, x, y, imgPath) {
-  Core.Component.call(this, width, height, imgPath, x, y, "image", game);
+  Core.Component.call(this, width, height, imgPath, x, y, "image", Core.GameArea);
 
   this.speed = speed;
   this.life = life;

@@ -1,8 +1,7 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 function Bullet(damage, speed, width, height, x, y, imgPath) {
-  Core.Component.call(this, width, height, imgPath, x, y, "image", game);
+  Core.Component.call(this, width, height, imgPath, x, y, "image", Core.GameArea);
 
   this.damage = damage;
   this.life = damage;

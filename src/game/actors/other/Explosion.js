@@ -1,5 +1,4 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 const imgPath = "../../../src/assets/img/effects/explosion/"
 
@@ -11,7 +10,7 @@ const explosionImgPath = {
 }
 
 function Explosion() {
-  Core.Component.call(this, 12, 12, explosionImgPath, 0, 0, "image", game);
+  Core.Component.call(this, 12, 12, explosionImgPath, 0, 0, "image", Core.GameArea);
   this.animation = new Core.Animation(this, [0, 1, 2, 3], 5);
   this.duration = 20;
 

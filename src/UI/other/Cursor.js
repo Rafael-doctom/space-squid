@@ -1,10 +1,9 @@
 import Core from "../../core/Core.js";
-import game from "../../shared/game.js";
 
 const cursorImgPath = {idle: "../../../src/assets/img/other/cursor.png"};
 
 function Cursor(x, y, choices, move) {
-  Core.Component.call(this, 6, 4, cursorImgPath, x, y, "image", game);
+  Core.Component.call(this, 6, 4, cursorImgPath, x, y, "image", Core.GameArea);
   this.delay = false;
   this.choice = "none";
   this.choices = choices

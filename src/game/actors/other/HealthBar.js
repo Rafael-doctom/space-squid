@@ -1,5 +1,4 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 const imgPath = "../../src/assets/img/healthBar/";
 
@@ -12,7 +11,7 @@ const healthBarImgPath = {
 };
 
 function HealthBar() {
-  Core.Component.call(this, 6, 17, healthBarImgPath, 1, 1, "image", game);
+  Core.Component.call(this, 6, 17, healthBarImgPath, 1, 1, "image", Core.GameArea);
 
   this.render = function() {
     this.newPos();

@@ -1,4 +1,4 @@
-import game from "../../shared/game.js"
+import GameArea from "../other/GameArea.js";
 
 import Component from "../components/Component.js";
 import detectColision from "../physics/detectColision.js";
@@ -9,24 +9,24 @@ const touchControl = {
   touches: [],
   isTouchDevice: false,
   isPressed: false,
-  test: new Component(8, 8, "black", 64, 31, "none", game),
+  test: new Component(8, 8, "black", 64, 31, "none", GameArea),
   c: null,
 
   joystick: {
-    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image", game),
-    in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image", game),
-    shot: new Component(16, 16, {idle: "../../src/assets/img/controls/shot.png"}, 105, 50, "image", game),
-    pause: new Component(7, 7, {idle: "../../src/assets/img/controls/pause.png"}, 120, 1, "image", game)
+    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image", GameArea),
+    in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image", GameArea),
+    shot: new Component(16, 16, {idle: "../../src/assets/img/controls/shot.png"}, 105, 50, "image", GameArea),
+    pause: new Component(7, 7, {idle: "../../src/assets/img/controls/pause.png"}, 120, 1, "image", GameArea)
   },
 
   buttons: {
-    up: new Component(24, 8, "red", 2, 46, game),
-    down: new Component(24, 8, "green", 2, 62, game),
-    left: new Component(8, 24, "orange", 2, 46, game),
-    right: new Component(8, 24, "yellow", 18, 46, game),
+    up: new Component(24, 8, "red", 2, 46, GameArea),
+    down: new Component(24, 8, "green", 2, 62, GameArea),
+    left: new Component(8, 24, "orange", 2, 46, GameArea),
+    right: new Component(8, 24, "yellow", 18, 46, GameArea),
   },
   
-  space: new Component(16, 16, "red", 105, 50, game),
+  space: new Component(16, 16, "red", 105, 50, GameArea),
 
   buttonsPressed: {
     up: false,
@@ -83,7 +83,7 @@ const touchControl = {
   },
 
   touchStartHandler: function(e) {
-    this.c = getImgSizeInfo(game.canvas);
+    this.c = getImgSizeInfo(GameArea.canvas);
 
     this.testButtons3(e.targetTouches);
     this.testButtons(e.targetTouches);
@@ -91,14 +91,14 @@ const touchControl = {
   },
 
   touchMoveHandler: function(e) {
-    this.c = getImgSizeInfo(game.canvas);
+    this.c = getImgSizeInfo(GameArea.canvas);
 
     this.testButtons(e.targetTouches);
     this.testButtons2(e.targetTouches);
   },
 
   touchEndHandler: function(e) { 
-    this.c = getImgSizeInfo(game.canvas);
+    this.c = getImgSizeInfo(GameArea.canvas);
  
     this.testButtons3(e.targetTouches);
     this.testButtons(e.targetTouches);

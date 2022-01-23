@@ -1,5 +1,4 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 import syncDelay from "../../../utils/syncDelay.js";
 
@@ -23,7 +22,7 @@ const superAirshipImgPath = {
 };
 
 function SuperAirship(x, y) {
-  Core.Component.call(this, 32, 32, superAirshipImgPath, x, y, "image", game);
+  Core.Component.call(this, 32, 32, superAirshipImgPath, x, y, "image", Core.GameArea);
 
   this.speed = 0.5;
   this.life = 128;
@@ -72,7 +71,7 @@ function SuperAirship(x, y) {
 
     if (this.y == 2) 
       this.direction = "down";
-    if (this.y == game.height - 41) 
+    if (this.y == Core.GameArea.height - 41) 
       this.direction = "up";    
   }
 

@@ -1,4 +1,3 @@
-import game from "./shared/game.js";
 import Core from "./core/Core.js";
 
 import UI from "./UI/UI.js";
@@ -21,7 +20,7 @@ window.addEventListener("click", () => {
 });
 
 function startGame() {
-  game.init();
+  Core.GameArea.init();
   Core.KeyboardControl.initEvents();
   Core.TouchControl.initEvents();
   updateGameArea();
@@ -45,5 +44,3 @@ function updateGameArea() {
   Core.TouchControl.renderButtons();
   requestAnimationFrame(updateGameArea);
 }
-
-//startGame();

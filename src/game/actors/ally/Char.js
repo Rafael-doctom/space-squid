@@ -1,5 +1,4 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 import Laser from "../bullets/Laser.js";
 
@@ -17,7 +16,7 @@ const charImgPath = {
 }
 
 function Char() {
-  Core.Component.call(this, 7, 7, charImgPath, 21, 21, "image", game);
+  Core.Component.call(this, 7, 7, charImgPath, 21, 21, "image", Core.GameArea);
 
   this.speed = 0.5;
   this.life = 8;
@@ -56,7 +55,7 @@ function Char() {
     this.bullets = this.bullets.filter(bullet => !bullet.isDead);
 
     for (const bullet of this.bullets) {
-      if (bullet.x < game.width) {
+      if (bullet.x < Core.GameArea.width) {
         bullet.render();
       } else {
         bullet.isDead = true;
@@ -175,8 +174,8 @@ function Char() {
       this.x = 0;
       return; 
     }
-    if (this.x > game.width -7) {
-      this.x = game.width - 7;
+    if (this.x > Core.GameArea.width -7) {
+      this.x = Core.GameArea.width - 7;
       return;
     }  
     if (this.y < 0) {
@@ -184,8 +183,8 @@ function Char() {
       return;
     }
     
-    if (this.y > game.height - 15) {
-      this.y = game.height - 15;
+    if (this.y > Core.GameArea.height - 15) {
+      this.y = Core.GameArea.height - 15;
       return;
     }
   

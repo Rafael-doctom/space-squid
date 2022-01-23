@@ -1,5 +1,4 @@
 import Core from "../../../core/Core.js";
-import game from "../../../shared/game.js";
 
 import Enemy from "../templates/Enemy.js";
 import SmallBullet from "../bullets/SmallBullet.js";
@@ -23,7 +22,7 @@ function Helicopter(x, y) {
 
     if (this.y == 0) 
       this.direction = "down";
-    if (this.y == game.height - 15)
+    if (this.y == Core.GameArea.height - 15)
       this.direction = "up";
   }
 
