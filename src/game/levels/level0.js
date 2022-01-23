@@ -1,5 +1,4 @@
 import Core from "../../core/Core.js";
-import game from "../../shared/game.js";
 
 import Background from "../actors/other/Background.js";
 import Char from "../actors/ally/Char.js";
@@ -30,7 +29,7 @@ function Level0() {
     if (!this.char.isDead) {
       if (!this.background.music.isPlaying)
         this.background.music.play();
-      game.clear();
+      Core.GameArea.clear();
       this.charActions();
       this.waveList.start();
       this.renderAll();
@@ -82,31 +81,30 @@ function Level0() {
     this.char.movement(Core.KeyboardControl, Core.TouchControl);
 
     for (let index = 0; index < this.helicopters.array.length; index++) {
-      if (!this.helicopters.array[index].isDead) {
+      if (!this.helicopters.array[index].isDead) 
         this.char.tookDamage(this.helicopters.array[index], this.healthBar);
-        for (const bullet of this.helicopters.array[index].bullets)
+
+      for (const bullet of this.helicopters.array[index].bullets)
         this.char.tookDamage(bullet, this.healthBar);
-      }
     }
     
-    for (let index = 0; index < this.airships.array.length; index++) 
-      if (!this.airships.array[index].isDead) {
+    for (let index = 0; index < this.airships.array.length; index++) {
+      if (!this.airships.array[index].isDead) 
         this.char.tookDamage(this.airships.array[index], this.healthBar);
-        for (const bullet of this.airships.array[index].bullets) {
-          this.char.tookDamage(bullet, this.healthBar);
-        }
-      }
+      
+      for (const bullet of this.airships.array[index].bullets) 
+        this.char.tookDamage(bullet, this.healthBar);
+    }
 
     if (!this.boss.isDead) {
       this.char.tookDamage(this.boss.hitBox.upWing, this.healthBar);
       this.char.tookDamage(this.boss.hitBox.cockpit, this.healthBar);
       this.char.tookDamage(this.boss.hitBox.body, this.healthBar);
       this.char.tookDamage(this.boss.hitBox.downWing, this.healthBar);
-
-      for (const bullet of this.boss.bullets) {
-        this.char.tookDamage(bullet, this.healthBar);
-      }
     }
+
+    for (const bullet of this.boss.bullets) 
+      this.char.tookDamage(bullet, this.healthBar);
   }
 
   this.waves = {
