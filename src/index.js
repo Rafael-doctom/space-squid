@@ -32,6 +32,7 @@ function updateGameArea() {
       }
     }
   }
+  //levels[0].start();
 
   Core.TouchControl.renderButtons();
   requestAnimationFrame(updateGameArea);

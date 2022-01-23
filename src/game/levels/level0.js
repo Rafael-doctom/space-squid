@@ -52,7 +52,6 @@ function Level0() {
   }
 
   this.init = function() {
-    this.waveList.currentWave = 2;
     this.helicopters.addEnemy(100, 10);
     this.helicopters.addEnemy(80, 30);
     this.helicopters.addEnemy(90, 20);
