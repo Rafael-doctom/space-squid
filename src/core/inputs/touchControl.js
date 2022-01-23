@@ -3,16 +3,20 @@ import game from "../../shared/game.js"
 import Component from "../components/Component.js";
 import detectColision from "../physics/detectColision.js";
 
+import getImgSizeInfo from "../../utils/getImgSizeInfo.js";
+
 const touchControl = {
   touches: [],
   isTouchDevice: false,
   isPressed: false,
-  isPressed2: false,
+  test: new Component(8, 8, "black", 64, 31, "none", game),
+  c: null,
 
   joystick: {
     out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image", game),
     in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image", game),
     shot: new Component(16, 16, {idle: "../../src/assets/img/controls/shot.png"}, 105, 50, "image", game),
+    pause: new Component(7, 7, {idle: "../../src/assets/img/controls/pause.png"}, 120, 1, "image", game)
   },
 
   buttons: {
@@ -29,7 +33,8 @@ const touchControl = {
     down: false,
     left: false,
     right: false,
-    space: false
+    space: false,
+    enter: 0
   },
 
   renderButtons: function() {
@@ -45,6 +50,8 @@ const touchControl = {
     this.joystick.out.update()
     this.joystick.in.update();
     this.joystick.shot.update();
+    this.joystick.pause.update();
+    //this.test.update();
   },
 
   initEvents: function() {
@@ -76,24 +83,39 @@ const touchControl = {
   },
 
   touchStartHandler: function(e) {
+    this.c = getImgSizeInfo(game.canvas);
+
+    this.testButtons3(e.targetTouches);
     this.testButtons(e.targetTouches);
     this.testButtons2(e.targetTouches);
   },
 
   touchMoveHandler: function(e) {
+    this.c = getImgSizeInfo(game.canvas);
+
     this.testButtons(e.targetTouches);
     this.testButtons2(e.targetTouches);
   },
 
-  touchEndHandler: function(e) {  
+  touchEndHandler: function(e) { 
+    this.c = getImgSizeInfo(game.canvas);
+ 
+    this.testButtons3(e.targetTouches);
     this.testButtons(e.targetTouches);
     this.testButtons2(e.targetTouches);
   },
 
   testButtons: function(targetTouches) {
-    const xRatio = 128 / innerWidth;
-    const yRatio = 72 / innerHeight;
+    const xRatio = 128 / this.c.width;
+    const yRatio = 72 / this.c.height;
     let button, touch, buttonActive;
+
+/*
+    if (targetTouches[0]) {
+      this.test.x = Math.floor((targetTouches[0].pageX - this.c.left) * xRatio) - 4;
+      this.test.y = Math.floor((targetTouches[0].pageY - this.c.top) * yRatio) - 4;
+      return;
+    }*/
 
     for (let index = 3; index > -1; --index) {
       button = this.buttons[Object.keys(this.buttons)[index]];
@@ -108,15 +130,15 @@ const touchControl = {
         this.resetIn();
         return;
       }
-
+      
       for (let index = targetTouches.length - 1; index > -1; --index) {
         touch = targetTouches[index];    
-  
-        touch.x = Math.floor(touch.pageX * xRatio) - 4;
-        touch.y = Math.floor(touch.pageY * yRatio) - 4;
+
+        touch.x = Math.floor((targetTouches[index].pageX - this.c.left) * xRatio) - 4;
+        touch.y = Math.floor((targetTouches[index].pageY - this.c.top) * yRatio) - 4;
         touch.width = 4;
         touch.height = 4;
-  
+
         if (touch.x > 100 && touch.y > 45 && targetTouches.length == 1) {
           this.buttonsPressed.up = false;
           this.buttonsPressed.down = false;
@@ -153,8 +175,8 @@ const touchControl = {
   },
 
   testButtons2: function(targetTouches) {
-    const xRatio = 128 / innerWidth;
-    const yRatio = 72 / innerHeight;
+    const xRatio = 128 / this.c.width;
+    const yRatio = 72 / this.c.height;
     let touch;
 
     if (targetTouches.length == 0) {
@@ -164,8 +186,8 @@ const touchControl = {
 
     for (let index = targetTouches.length - 1; index > -1; --index) {
       touch = targetTouches[index];
-      touch.x = Math.floor(touch.pageX * xRatio) - 4;
-      touch.y = Math.floor(touch.pageY * yRatio) - 4;
+      touch.x = Math.floor((targetTouches[index].pageX - this.c.left) * xRatio) - 4;
+      touch.y = Math.floor((targetTouches[index].pageY - this.c.top) * yRatio) - 4;
       touch.width = 4;
       touch.height = 4;
   
@@ -174,9 +196,35 @@ const touchControl = {
         return;
       }
 
+      if (targetTouches.length == 1 && touch.x < 100 && touch.y < 45) {
+        this.buttonsPressed.space = false;
+        return;
+      }
+
       if (detectColision(touch, this.space)) {
         this.buttonsPressed.space = true;
       }  
+    }
+  },
+
+  testButtons3: function(targetTouches) {
+    const xRatio = 128 / this.c.width;
+    const yRatio = 72 / this.c.height;
+    let touch;
+
+    for (let index = targetTouches.length - 1; index > -1; --index) {
+      touch = targetTouches[index];
+     
+      touch.x = Math.floor((targetTouches[index].pageX - this.c.left) * xRatio) - 4;
+      touch.y = Math.floor((targetTouches[index].pageY - this.c.top) * yRatio) - 4;
+      touch.width = 4;
+      touch.height = 4;
+      
+      if (detectColision(touch, this.joystick.pause) && this.buttonsPressed.enter > 0) {
+        this.buttonsPressed.enter = 0;
+      } else if (detectColision(touch, this.joystick.pause)) {
+        this.buttonsPressed.enter = 1;
+      }
     }
   },
 

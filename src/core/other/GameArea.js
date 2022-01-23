@@ -1,18 +1,25 @@
+import syncDelay from "../../utils/syncDelay.js";
+
 function GameArea(bitMapWidth, bitMapHeight, styleWidth, styleHeight) {
   this.canvas = document.createElement("canvas");
   this.width = bitMapWidth;
   this.height = bitMapHeight;
 
-  this.init = function() {
+  this.init = async function() {
     this.canvas.width = this.width;
     this.canvas.height = this.height;  
 
     this.canvas.style.width = styleWidth + "px";
     this.canvas.style.height = styleHeight + "px";
+
     this.canvas.style.objectFit = "contain";
+    this.canvas.style.objectPosition = "50% 50%";
 
     this.context = this.canvas.getContext("2d");
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    
+    this.canvas.requestFullscreen();
+    await syncDelay(500);
 
     const originalHeight = this.canvas.height;
     const originalWidth = this.canvas.width;

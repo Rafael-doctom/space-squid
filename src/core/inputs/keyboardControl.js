@@ -4,7 +4,8 @@ const keyboardControl = {
     down: 83, //40,
     left: 65, //37,
     right: 68, //39,
-    space: 74//32
+    space: 74,//32
+    enter: 13
   }, 
 
   keysPressed: {
@@ -12,7 +13,8 @@ const keyboardControl = {
     downPressed: false,
     leftPressed: false,
     rightPressed: false,
-    spacePressed: false
+    spacePressed: false,
+    enterPressed: 0
   },
 
   initEvents: function() {
@@ -26,6 +28,9 @@ const keyboardControl = {
   },
 
   keyDownHandler: function(event) {
+    if (event.keyCode == this.keysCode.enter)
+      this.keysPressed.enterPressed++;
+
     if (event.keyCode == this.keysCode.space)
       this.keysPressed.spacePressed = true;
 
@@ -44,6 +49,9 @@ const keyboardControl = {
   },
   
   keyUpHandler: function(event) {
+    if (this.keysPressed.enterPressed > 1)
+      this.keysPressed.enterPressed = 0;
+
     if (event.keyCode == this.keysCode.space)
       this.keysPressed.spacePressed = false;
 

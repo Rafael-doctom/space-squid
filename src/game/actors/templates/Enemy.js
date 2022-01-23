@@ -70,13 +70,6 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
       }     
     }
   }
-
-  this.resurrect = function() {
-    this.x = this.initialX;
-    this.y = this.initialY;
-    this.life = life;
-    this.isDead = false;
-  }
 }
 
 export default Enemy;
