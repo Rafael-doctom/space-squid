@@ -120,12 +120,12 @@ function Char() {
         if (this.life == 0)
           this.isDead = true;
         
-        setTimeout(() => this.isDamaged = false, 3000);
+        setTimeout(() => this.isDamaged = false, 2000);
         setTimeout(() => {
           clearInterval(interval1);
           clearInterval(interval2);
           this.isInvencible = false
-        }, 3000);
+        }, 2000);
 
         const interval1 = setInterval(() => this.isInvencible = false, 100);
         const interval2 = setInterval(() => this.isInvencible = true, 200);

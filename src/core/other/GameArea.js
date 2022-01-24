@@ -16,7 +16,7 @@ const GameArea = {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     
     this.canvas.requestFullscreen();
-    await syncDelay(500);
+    await syncDelay(50);
 
     const originalHeight = this.canvas.height;
     const originalWidth = this.canvas.width;

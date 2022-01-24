@@ -4,6 +4,7 @@ import UI from "./UI/UI.js";
 import Level0 from "./game/levels/level0.js";
 
 import xor from "./utils/xor.js";
+import syncDelay from "./utils/syncDelay.js";
 
 const levels = [
   new Level0()
@@ -26,9 +27,11 @@ function startGame() {
   updateGameArea();
 }
 
-function updateGameArea() {
-  if (UI.title.cursor.choice == "none")
+async function updateGameArea() {
+  if (UI.title.cursor.choice == "none") {
     UI.title.render();
+    await syncDelay(100);
+  }
   
   if (UI.title.cursor.choice == "start") {
     if (!xor(Core.KeyboardControl.keysPressed.enterPressed == 1, Core.TouchControl.buttonsPressed.enter == 1))  
@@ -36,11 +39,14 @@ function updateGameArea() {
 
     if (levels[0].loosed) {
       UI.gameOver.render();
+      await syncDelay(500);
       if (UI.gameOver.cursor.choice == "restart") {
         levels[0] = new Level0();
+        UI.gameOver.cursor.choice = "none";
       }
     }
   }
+  
   Core.TouchControl.renderButtons();
   requestAnimationFrame(updateGameArea);
 }
