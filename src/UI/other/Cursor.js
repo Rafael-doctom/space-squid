@@ -47,7 +47,14 @@ function Cursor(x, y, choices, move) {
   }
 
   this.select = function() {
+    if (this.delay) 
+      return;
+
     this.choice = this.choices[this.index];
+
+    setTimeout(() => {
+      this.delay = false;
+    }, 150);
   }
 }
 

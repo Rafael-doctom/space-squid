@@ -9,11 +9,11 @@ function Title() {
   this.menu = new Core.Text("6px", "#e2f3e4", "center", Core.GameArea);
   this.cursor = new Cursor(Core.GameArea.width / 3, 31, ["start", "options", "credits"]);
 
-  this.render = function() {
+  this.render = async function() {
     this.update();
-    this.write();
-    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
+    this.write(); 
     this.cursor.render();
+    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
   }
 
   this.write = function() {

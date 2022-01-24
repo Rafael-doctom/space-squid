@@ -2,20 +2,25 @@ import Core from "../../core/Core.js"
 
 import Screen from "../template/Screen.js";
 import Cursor from "../other/Cursor.js";
+import syncDelay from "../../utils/syncDelay.js";
 
 function GameOver() {
   Screen.call(this, "#332c50");
   this.heading = new Core.Text("12px", "#e2f3e4", "center", Core.GameArea);
   this.content = new Core.Text("6px", "#e2f3e4", "center", Core.GameArea);
   this.cursor = new Cursor(Core.GameArea.width / 4, 38, ["restart"], true);
+  this.renderCount = 0;
 
-  this.render = function() {
+  this.render = async function() {
     this.update();
     this.write();
-    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
     this.cursor.render();
+    if (this.renderCount == 0) 
+      await syncDelay(1000);
+    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
+    this.renderCount++;
   }
-  
+
   this.write = function() {
     this.heading.write("Game Over", Core.GameArea.width / 2, 25);
     this.content.write("Restart", Core.GameArea.width / 2, 42);
