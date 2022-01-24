@@ -12,7 +12,7 @@ function Animation(object, frames, fps) {
   this.fps = fps;
   this.currentFrame = 0;
   this.frameCount = 0;
-  this.animationCicleComplete = false;
+  this.animationCicleComplete = true;
 
   /*
   *
@@ -37,7 +37,7 @@ function Animation(object, frames, fps) {
     this.frameCount++;
     if (this.frameCount < this.fps)
       return;
-      this.frameCount = 0;
+    this.frameCount = 0;
 
     const imagesKeys = Object.keys(this.object.images);
 
