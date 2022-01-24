@@ -25,6 +25,17 @@ function Level0() {
       this.init();
       this.background.music.play();
       this.started = true;
+
+      for (let index = 0; index < this.helicopters.array.length; index++) {
+        this.helicopters.array[index].x = 128;
+      }
+
+      for (let index = 0; index < this.airships.array.length; index++) {
+        this.airships.array[index].x += 40;
+      }
+
+      this.boss.x = 128;
+
       setTimeout(() => this.char.isActive = true, 500);
     }
 
@@ -51,20 +62,24 @@ function Level0() {
   }
 
   this.init = function() {
-    this.helicopters.addEnemy(100, 10);
-    this.helicopters.addEnemy(80, 30);
-    this.helicopters.addEnemy(90, 20);
-    this.helicopters.addEnemy(100, 10);
-    this.helicopters.addEnemy(80, 10);
-    this.helicopters.addEnemy(90, 20);
-    this.helicopters.addEnemy(100, 30);
-    this.helicopters.addEnemy(110, 40);
-    this.helicopters.addEnemy(120, 50);
+    this.helicopters.addEnemy(70, 10);
+
+    this.helicopters.addEnemy(90, 30);
+    this.helicopters.addEnemy(100, 20);
+    this.helicopters.addEnemy(110, 10);
+
+    this.helicopters.addEnemy(70, 50);
+    this.helicopters.addEnemy(80, 40);
+    this.helicopters.addEnemy(90, 30);
+    this.helicopters.addEnemy(100, 20);
+    this.helicopters.addEnemy(110, 10);
 
     this.airships.addEnemy(110, 30);
+
     this.airships.addEnemy(110, 20);
     this.airships.addEnemy(100, 30);
     this.airships.addEnemy(110, 40);
+
     this.airships.addEnemy(110, 10);
     this.airships.addEnemy(100, 20);
     this.airships.addEnemy(90, 30);                                                                                                                  
@@ -140,7 +155,10 @@ function Level0() {
             bullet2.tookDamage(bullet);
         }
       }
-      this.boss.behavior(this.char.x, this.char.y);
+      if (this.boss.isActive2)
+        this.boss.behavior(this.char.x, this.char.y);
+      else
+        this.boss.entry();
     }
   }
 }

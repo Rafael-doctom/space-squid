@@ -31,6 +31,7 @@ function SuperAirship(x, y) {
   this.isDead = false;
   this.isMoving = false;
   this.isActive = false;
+  this.isActive2 = false;
   this.direction = "down";
   this.bullets = [];
   this.bulletDelay = 0;
@@ -46,6 +47,17 @@ function SuperAirship(x, y) {
   this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   this.b = true;
   this.a = true;
+
+  this.entry = function() {
+    if (!this.isActive2) {
+      this.speedX = -this.speed;
+    }
+    
+    if (this.x == this.initialX) {
+      this.speedX = 0;
+      this.isActive2 = true;
+    }
+  }
 
   this.render = function() {   
     if (this.isDead) {

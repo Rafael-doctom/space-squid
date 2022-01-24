@@ -7,6 +7,7 @@ function EnemyList(type) {
   this.activeEnemies = 0;
   this.deadEnemies = 0;
   this.isAllEnemiesDead = false;
+  this.enemyEntry = false;
 
   this.addEnemy = function(x, y) {
     if (type == "Helicopter")
@@ -29,11 +30,15 @@ function EnemyList(type) {
 
   this.actions = function(charBullets, targetYStart, targetYEnd) {
     for (let index = 0; index < this.activeEnemies; index++) {
-      if (!this.array[index].isDead) {
+      if (!this.array[index].isDead && this.array[index].isActive) {
         for (const bullet of charBullets)
           this.array[index].tookDamage(bullet);
         this.array[index].move();
         this.array[index].attack(targetYStart, targetYEnd);
+      } else if (!this.array[index].isActive) {
+        for (const bullet of charBullets)
+          this.array[index].tookDamage(bullet);
+        this.array[index].entry();
       }
     }
 

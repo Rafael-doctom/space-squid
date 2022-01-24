@@ -11,12 +11,24 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
   this.isDamaged = false;
   this.isDead = false;
   this.isMoving = false;
+  this.isActive = false;
   this.direction = "up"
   this.bullets = [];
   this.bulletDelay = 0;
   this.deathExplosion = new Explosion(this.x, this.y);
   this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
   
+  this.entry = function() {
+    if (!this.isActive) {
+      this.speedX = -this.speed;
+    }
+    
+    if (this.x == this.initialX) {
+      this.speedX = 0;
+      this.isActive = true;
+    }
+  }
+
   this.render = function() {   
     if (this.isDead) {
       this.deathExplosion.actions(this.x, this.y);
