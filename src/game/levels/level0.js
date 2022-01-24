@@ -23,12 +23,12 @@ function Level0() {
   this.start = function() {
     if (!this.started) {
       this.init();
+      this.background.music.play();
       this.started = true;
+      setTimeout(() => this.char.isActive = true, 500);
     }
 
     if (!this.char.isDead) {
-      if (!this.background.music.isPlaying)
-        this.background.music.play();
       Core.GameArea.clear();
       this.charActions();
       this.waveList.start();
@@ -77,6 +77,8 @@ function Level0() {
   }
 
   this.charActions = function() {
+    if (!this.char.isActive) return;
+
     this.char.clearmove();
     this.char.movement(Core.KeyboardControl, Core.TouchControl);
 
