@@ -29,26 +29,27 @@ function Char() {
   this.isDead = false;
   this.bullets = [];
   this.bulletDelay = 0;
-  this.idleAttackAnimation = new Core.Animation(this, [3, 0], 8);
-  this.forwardAttackAnimation = new Core.Animation(this, [4, 1], 8);
-  this.backwardAttackAnimation = new Core.Animation(this, [5, 2], 8);
+  this.idleAttackAnimation = new Core.Animation(this, [3, 0], 6);
+  this.forwardAttackAnimation = new Core.Animation(this, [4, 1], 6);
+  this.backwardAttackAnimation = new Core.Animation(this, [5, 2], 6);
   this.attackSound = new Core.SoundComponent("../src/assets/sound/char/attack.wav");
 
   this.render = function() { 
-    if (this.isDamaged) {
-      if (this.isInvencible)
-        this.currentImage = this.images.invisible;
-    } 
-
+    
     if (this.currentImage == this.images.idle || this.currentImage == this.images.idleAttack)
-      this.idleAttackAnimation.animate(this.isAttacking);
+      this.idleAttackAnimation.animate(this.isAttacking && this.bulletDelay == 250);
     else if (this.currentImage == this.images.forward || this.currentImage == this.images.forwardAttack)
-      this.forwardAttackAnimation.animate(this.isAttacking);
+      this.forwardAttackAnimation.animate(this.isAttacking && this.bulletDelay == 250);
     else if (this.currentImage == this.images.backward || this.currentImage == this.images.backwardAttack)
-      this.backwardAttackAnimation.animate(this.isAttacking);
-
-    this.update();
+      this.backwardAttackAnimation.animate(this.isAttacking && this.bulletDelay == 250);
+      
     this.newPos();
+
+    if (this.isDamaged && this.isInvencible) {
+      this.erase();
+    } else {
+      this.update();
+    }
   }
 
   this.renderBullets = function() {
@@ -124,7 +125,7 @@ function Char() {
           clearInterval(interval1);
           clearInterval(interval2);
           this.isInvencible = false
-        }, 2500);
+        }, 3000);
 
         const interval1 = setInterval(() => this.isInvencible = false, 100);
         const interval2 = setInterval(() => this.isInvencible = true, 200);
@@ -143,21 +144,21 @@ function Char() {
   this.move = function(dir) {
     this.isMoving = true;
 
-    if (dir != "left" && this.speedX > -0.5) {
-      if (!(this.currentImage == this.images.forward || this.currentImage == this.images.forwardAttack))
-        this.currentImage = this.images.forward;
-    } else if (dir == "left") {
+    if (!this.preventMoveOutScreen())
+    return;
+    
+    if (dir == "up") {this.speedY = -this.speed;}
+    if (dir == "down") {this.speedY = this.speed;}
+    if (dir == "left") {this.speedX = -this.speed;}
+    if (dir == "right") {this.speedX = this.speed;}
+
+    if (this.speedX == -this.speed) {
       if (!(this.currentImage == this.images.backward || this.currentImage == this.images.backwardAttack))
         this.currentImage = this.images.backward;
-    }
-  
-    if (!this.preventMoveOutScreen())
-      return;
-  
-    if (dir == "up") {this.speedY = -this.speed; }
-    if (dir == "down") {this.speedY = this.speed; }
-    if (dir == "left") {this.speedX = -this.speed; }
-    if (dir == "right") {this.speedX = this.speed; }
+    } else {
+      if (!(this.currentImage == this.images.forward || this.currentImage == this.images.forwardAttack))
+        this.currentImage = this.images.forward;
+    } 
   }
   
   this.clearmove = function() {
