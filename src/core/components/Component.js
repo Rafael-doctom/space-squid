@@ -41,6 +41,13 @@ function Component(width, height, color, x, y, type, gameArea) {
       ctx.fillRect(this.x, this.y, this.width, this.height);
     }
   },
+
+  this.erase = function() {
+    const ctx = gameArea.canvas.getContext("2d");
+    ctx.fillStyle = "transparent";
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  },
+
   this.newPos = function() {
     this.x += this.speedX;
     this.y += this.speedY;
