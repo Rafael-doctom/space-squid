@@ -4,7 +4,6 @@ import UI from "./UI/UI.js";
 import Level0 from "./game/levels/level0.js";
 
 import xor from "./utils/xor.js";
-import syncDelay from "./utils/syncDelay.js";
 
 const levels = [
   new Level0()
@@ -30,7 +29,8 @@ function startGame() {
 async function updateGameArea() {
   if (UI.title.cursor.choice == "none") {
     UI.title.render();
-    await syncDelay(100);
+    UI.title.music.play();
+    //UI.credits.render();
   }
   
   if (UI.title.cursor.choice == "start") {
@@ -39,10 +39,8 @@ async function updateGameArea() {
 
     if (levels[0].loosed) {
       UI.gameOver.render();
-      await syncDelay(500);
       if (UI.gameOver.cursor.choice == "restart") {
         levels[0] = new Level0();
-        UI.gameOver.cursor.choice = "none";
       }
     }
   }
