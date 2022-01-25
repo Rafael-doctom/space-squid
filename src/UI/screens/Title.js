@@ -8,6 +8,7 @@ function Title() {
   this.heading = new Core.Text("14px", "#94e344", "center", Core.GameArea);
   this.menu = new Core.Text("6px", "#e2f3e4", "center", Core.GameArea);
   this.cursor = new Cursor(Core.GameArea.width / 3, 31, ["start", "options", "credits"]);
+  this.music = new Core.SoundComponent("../src/assets/sound/UI/title.wav", 0.35, true);
 
   this.render = async function() {
     this.update();
