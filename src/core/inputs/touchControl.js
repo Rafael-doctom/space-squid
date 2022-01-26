@@ -37,8 +37,8 @@ const touchControl = {
     enter: 0
   },
 
-  renderButtons: function() {
-    if (!this.isTouchDevice)
+  renderButtons: function(condition) {
+    if (!this.isTouchDevice || condition)
       return;
 /*
     this.buttons.up.update();

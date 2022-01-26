@@ -35,7 +35,7 @@ function EnemyList(type) {
           this.array[index].tookDamage(bullet);
         this.array[index].move();
         this.array[index].attack(targetYStart, targetYEnd);
-      } else if (!this.array[index].isActive) {
+      } else if (!this.array[index].isActive && !this.array[index].isDead) {
         for (const bullet of charBullets)
           this.array[index].tookDamage(bullet);
         this.array[index].entry();

@@ -49,6 +49,7 @@ function SuperAirship(x, y) {
   this.a = true;
 
   this.entry = function() {
+    this.isMoving = true;
     if (!this.isActive2) {
       this.speedX = -this.speed;
     }
@@ -100,7 +101,7 @@ function SuperAirship(x, y) {
         this.b = true;
         setTimeout(() => {
           this.currentPhase = 0;
-          setTimeout(() => this.currentPhase = 2, 1000);
+          setTimeout(() => this.currentPhase = 2, 2000);
         }, 3000);
       }
       if (this.currentPhase == 2 && this.b) {
@@ -108,7 +109,7 @@ function SuperAirship(x, y) {
         this.a = true;
         setTimeout(() => {
           this.currentPhase = 0;
-          setTimeout(() => this.currentPhase = 1, 1000);
+          setTimeout(() => this.currentPhase = 1, 2000);
         }, 5000);
       }
     }
@@ -150,7 +151,7 @@ function SuperAirship(x, y) {
       else if (phase == 2)
         this.bulletDelay = 120;
       else if (phase == 0)
-        this.bulletDelay = 750;
+        this.bulletDelay = 1500;
     } 
   }
 

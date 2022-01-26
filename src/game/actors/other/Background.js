@@ -12,8 +12,6 @@ function Background() {
     Core.GameArea
   )
 
-  this.music = new Core.SoundComponent("../src/assets/sound/background/sky2.mp3", 0.35, true);
-
   this.render = function() {
     this.speedX = -0.25;
     this.newPos();
