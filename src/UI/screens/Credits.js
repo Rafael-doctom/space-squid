@@ -1,41 +1,30 @@
 import Core from "../../core/Core.js"
-
 import Screen from "../template/Screen.js";
-import Cursor from "../other/Cursor.js";
 
 function Credits() {
   Screen.call(this, "#332c50");
-  this.heading = new Core.Text("10px", "#e2f3e4", "center", Core.GameArea);
-  this.menu = new Core.Text("4px", "#94e344", "center", Core.GameArea);
-  this.paragraph = new Core.Text("3px", "#e2f3e4", "center", Core.GameArea);
-  this.cursor = new Cursor(15, 10, ["back"]);
+  this.content = new Core.Text(Core.GameArea);
 
   this.render = async function() {
     this.update();
     this.write(); 
-    //this.cursor.render();
-    this.cursor.movement(Core.KeyboardControl, Core.TouchControl);
   }
 
   this.write = function() {
-    this.heading.write("Credits", Core.GameArea.width / 2, 15);
+    this.content.write("Credits", Core.GameArea.width / 2, 15, "10px", "#e2f3e4", "center");
+    this.content.write("Back", 18, 7, "5px", "#e2f3e4", "center");
 
-    this.menu.write("Design", Core.GameArea.width / 2, 25);
-    this.paragraph.write("Augusto_Ravazoli", Core.GameArea.width / 2, 28);
+    this.content.write("Design, Art, Sound and Programming", Core.GameArea.width / 2, 26, "3px", "#94e344", "center");
+    this.content.write("Augusto Ravazoli", Core.GameArea.width / 2, 30, "3px", "#e2f3e4", "center");
 
-    this.menu.write("Art", Core.GameArea.width / 2, 35);
-    this.paragraph.write("Augusto_Ravazoli", Core.GameArea.width / 2, 38);
+    this.content.write("Font", Core.GameArea.width / 2, 39, "3px", "#94e344", "center");
+    this.content.write("Daymarius", Core.GameArea.width / 2, 43, "3px", "#e2f3e4", "center");
 
-    this.menu.write("Programming", Core.GameArea.width / 2, 45);
-    this.paragraph.write("Augusto_Ravazoli", Core.GameArea.width / 2, 48);
+    this.content.write("Music", Core.GameArea.width / 2, 52, "3px", "#94e344", "center");
+    this.content.write("Mixkit", Core.GameArea.width / 2, 56, "3px", "#e2f3e4", "center");
 
-    this.menu.write("Sound", Core.GameArea.width / 2, 55);
-    this.paragraph.write("Augusto_Ravazoli", Core.GameArea.width / 2, 58);
-
-    this.menu.write("Test", Core.GameArea.width / 2, 65);
-    this.paragraph.write("Augusto_Ravazoli", Core.GameArea.width / 2, 68);
-
-    //this.menu.write("Back", 30, 15);
+    this.content.write("Palette", Core.GameArea.width / 2, 65, "3px", "#94e344", "center");
+    this.content.write("Kirokaze", Core.GameArea.width / 2, 69, "3px", "#e2f3e4", "center");
   }
 }
 
