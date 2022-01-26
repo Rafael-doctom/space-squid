@@ -8,10 +8,14 @@ import HealthBar from "../actors/other/HealthBar.js";
 import EnemyList from "../other/EnemyList.js";
 import WaveList from "../other/waveList.js";
 
+import xor from "../../utils/xor.js";
+
 function Level0() {
   this.waveList = new WaveList();
   this.started = false;
+  this.paused = false;
   this.loosed = false;
+  this.music = new Core.SoundComponent("../../src/assets/sound/background/sky2.mp3", 0.25, true);
 
   this.background = new Background(),
   this.healthBar = new HealthBar(),
@@ -21,9 +25,17 @@ function Level0() {
   this.boss = new SuperAirship(92, 20)
 
   this.start = function() {
+    if (xor(Core.KeyboardControl.keysPressed.enterPressed == 1, Core.TouchControl.buttonsPressed.enter == 1)) {
+      this.paused = true;
+      this.music.stop();
+      return;
+    } else {
+      this.paused = false;
+      setTimeout(() => this.music.play(), 150);
+    }
+
     if (!this.started) {
       this.init();
-      this.background.music.play();
       this.started = true;
 
       for (let index = 0; index < this.helicopters.array.length; index++) {
@@ -46,7 +58,6 @@ function Level0() {
       this.renderAll();
     } else {
       this.loosed = true;
-      this.background.music.stop();
     }
   }
 
@@ -62,7 +73,7 @@ function Level0() {
   }
 
   this.init = function() {
-    this.helicopters.addEnemy(70, 10);
+    this.helicopters.addEnemy(90, 10);
 
     this.helicopters.addEnemy(90, 30);
     this.helicopters.addEnemy(100, 20);
