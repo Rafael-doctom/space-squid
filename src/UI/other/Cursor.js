@@ -1,6 +1,6 @@
 import Core from "../../core/Core.js";
 
-const cursorImgPath = {idle: "../../../src/assets/img/other/cursor.png"};
+const cursorImgPath = {idle: "assets/img/other/cursor.png"};
 
 function Cursor(screens, currentScreen = "title") {
   Core.Component.call(this, 6, 4, cursorImgPath, 42, 34, "image", Core.GameArea);

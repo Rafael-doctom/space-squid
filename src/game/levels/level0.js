@@ -15,7 +15,7 @@ function Level0() {
   this.started = false;
   this.paused = false;
   this.loosed = false;
-  this.music = new Core.SoundComponent("../../src/assets/sound/background/sky2.mp3", 0.25, true);
+  this.music = new Core.SoundComponent("assets/sound/background/sky2.mp3", 0.25, true);
 
   this.background = new Background(),
   this.healthBar = new HealthBar(),

@@ -3,13 +3,13 @@ import Core from "../../../core/Core.js";
 import Enemy from "../templates/Enemy.js";
 import SmallBullet from "../bullets/SmallBullet.js";
 
-const imgPath = "../../src/assets/img/enemy/helicopter/";
+const imgPath = "assets/img/enemy/helicopter/";
 
 const helicopterImgPath = {
   idle1: `${imgPath}idle1.png`,
   idle2: `${imgPath}idle2.png`,
   idle3: `${imgPath}idle3.png`,
-  invisible: "../../../src/assets/img/char/invisible.png"
+  invisible: "assets/img/char/invisible.png"
 };
 
 function Helicopter(x, y) {

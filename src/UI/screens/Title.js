@@ -4,7 +4,7 @@ import Screen from "../template/Screen.js";
 function Title() {
   Screen.call(this, "#332c50");
   this.content = new Core.Text(Core.GameArea);
-  this.music = new Core.SoundComponent("../src/assets/sound/UI/mixkit-techno-fights-171.mp3", 0.35, true);
+  this.music = new Core.SoundComponent("assets/sound/UI/mixkit-techno-fights-171.mp3", 0.35, true);
 
   this.render = function() {
     this.music.play();

@@ -3,11 +3,11 @@ import Core from "../../../core/Core.js";
 import Enemy from "../templates/Enemy.js";
 import SmallBullet from "../bullets/SmallBullet.js";
 
-const imgPath = "../../src/assets/img/enemy/airship/";
+const imgPath = "assets/img/enemy/airship/";
 
 const airshipImgPath = {
   idle1: `${imgPath}idle.png`,
-  invisible: "../../../src/assets/img/char/invisible.png"
+  invisible: "assets/img/char/invisible.png"
 };
 
 function Airship(x, y) {

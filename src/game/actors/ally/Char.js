@@ -2,7 +2,7 @@ import Core from "../../../core/Core.js";
 
 import Laser from "../bullets/Laser.js";
 
-const imgPath = "../../src/assets/img/char/"
+const imgPath = "/assets/img/char/"
 
 const charImgPath = {
   idle: `${imgPath}idle.png`,
@@ -32,7 +32,7 @@ function Char() {
   this.idleAttackAnimation = new Core.Animation(this, [3, 0], 6);
   this.forwardAttackAnimation = new Core.Animation(this, [4, 1], 6);
   this.backwardAttackAnimation = new Core.Animation(this, [5, 2], 6);
-  this.attackSound = new Core.SoundComponent("../src/assets/sound/char/attack.wav");
+  this.attackSound = new Core.SoundComponent("assets/sound/char/attack.wav");
 
   this.render = function() { 
     

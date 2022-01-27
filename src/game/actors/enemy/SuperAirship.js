@@ -7,7 +7,7 @@ import SmallBullet from "../bullets/SmallBullet.js";
 import BigBullet from "../bullets/BigBullet.js";
 import Missile from "../bullets/Missile.js";
 
-const imgPath = "../../../src/assets/img/enemy/superAirship/";
+const imgPath = "assets/img/enemy/superAirship/";
 
 const superAirshipImgPath = {
   idle: `${imgPath}idle.png`,
@@ -44,7 +44,7 @@ function SuperAirship(x, y) {
     downWing: new Core.HitBox(16, 8, 16, 2)
   }
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new Core.SoundComponent("assets/sound/enemys/death.wav", 0.75);
   this.b = true;
   this.a = true;
 

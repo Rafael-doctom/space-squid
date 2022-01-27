@@ -6,16 +6,16 @@ import Explosion from "../other/Explosion.js";
 import angler from "../../../utils/angler.js";
 
 const imgPath = {
-  frame1: "../../src/assets/img/attacks/missile1.png",
-  frame2: "../../src/assets/img/attacks/missile2.png",
-  frame3: "../../src/assets/img/char/invisible.png"
+  frame1: "assets/img/attacks/missile1.png",
+  frame2: "assets/img/attacks/missile2.png",
+  frame3: "assets/img/char/invisible.png"
 };
 
 function Missile(x, y) {
   Bullet.call(this, 2, 0.5, 10, 4, x, y, imgPath);
   this.animation = new Core.Animation(this, [0, 1], 5);
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 0.75);
+  this.deathSound = new Core.SoundComponent("assets/sound/enemys/death.wav", 0.75);
   this.life = 6;
   this.targetX = null;
   this.targetY = null;

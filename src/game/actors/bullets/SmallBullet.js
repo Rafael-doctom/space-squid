@@ -1,7 +1,7 @@
 import Bullet from "../templates/Bullet.js";
 
 const imgPath = {
-  frame1: "../../src/assets/img/attacks/smallBullet.png",
+  frame1: "assets/img/attacks/smallBullet.png",
 };
 
 function SmallBullet(x, y) {

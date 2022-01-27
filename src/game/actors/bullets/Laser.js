@@ -1,7 +1,7 @@
 import Bullet from "../templates/Bullet.js";
 
 const imgPath = {
-  frame1: "../../src/assets/img/attacks/laser.png",
+  frame1: "assets/img/attacks/laser.png",
 };
 
 function Laser(x, y) {

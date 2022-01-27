@@ -1,6 +1,6 @@
 import Core from "../../../core/Core.js";
 
-const imgPath = "../../src/assets/img/healthBar/";
+const imgPath = "assets/img/healthBar/";
 
 const healthBarImgPath = {
   l8: `${imgPath}eight.png`,

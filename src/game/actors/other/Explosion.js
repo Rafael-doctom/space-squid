@@ -1,6 +1,6 @@
 import Core from "../../../core/Core.js";
 
-const imgPath = "../../../src/assets/img/effects/explosion/"
+const imgPath = "assets/img/effects/explosion/"
 
 const explosionImgPath = {
   e1: `${imgPath}1.png`,

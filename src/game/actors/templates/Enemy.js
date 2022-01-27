@@ -16,7 +16,7 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
   this.bullets = [];
   this.bulletDelay = 0;
   this.deathExplosion = new Explosion(this.x, this.y);
-  this.deathSound = new Core.SoundComponent("../../src/assets/sound/enemys/death.wav", 1);
+  this.deathSound = new Core.SoundComponent("assets/sound/enemys/death.wav", 1);
   
   this.entry = function() {
     this.isMoving = true;

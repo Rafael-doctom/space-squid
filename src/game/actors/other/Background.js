@@ -1,6 +1,6 @@
 import Core from "../../../core/Core.js";
 
-const backgroundImgPath = {idle: "../../src/assets/img/background/sky.png"};
+const backgroundImgPath = {idle: "assets/img/background/sky.png"};
 
 function Background() {
   Core.Component.call(
