@@ -2,7 +2,7 @@ import Core from "../../../core/Core.js";
 
 import Laser from "../bullets/Laser.js";
 
-const imgPath = "/assets/img/char/"
+const imgPath = "assets/img/char/"
 
 const charImgPath = {
   idle: `${imgPath}idle.png`,

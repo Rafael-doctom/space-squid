@@ -18,7 +18,7 @@ const superAirshipImgPath = {
   noLasersNoDownWing: `${imgPath}noLasersNoDownWing.png`,
   noLasersNoUpWing: `${imgPath}noLasersNoUpWing.png`,
   noLasers: `${imgPath}noLasers.png`,
-  invisible: "../../../src/assets/img/char/invisible.png"
+  invisible: "assets/img/char/invisible.png"
 };
 
 function SuperAirship(x, y) {

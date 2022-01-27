@@ -1,5 +1,5 @@
 function Text(gameArea) {
-  this.fontFace = new FontFace("Retro Gaming", "url(../src/assets/font/RetroGaming.ttf)");
+  this.fontFace = new FontFace("Retro Gaming", "url(assets/font/RetroGaming.ttf)");
   this.ctx = gameArea.canvas.getContext("2d");
   this.fontFace.load().then(font => {
     document.fonts.add(font);
