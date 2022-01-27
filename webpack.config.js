@@ -13,7 +13,7 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    publicPath: this.mode === 'production' ? './space-squid' : './',
+    publicPath: this.mode === 'production' ? 'space-squid/' : './',
     path: path.resolve(__dirname, 'docs'),
     clean: true
   },
