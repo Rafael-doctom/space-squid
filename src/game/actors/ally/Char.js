@@ -1,6 +1,7 @@
 import Core from "../../../core/Core.js";
 
 import Laser from "../bullets/Laser.js";
+import Missile from "../bullets/Missile.js";
 
 const imgPath = "assets/img/char/"
 
@@ -103,7 +104,7 @@ function Char() {
 
   this.tookDamage = function(object, healthBar) {
     let type = "simple"
-    if (object.constructor.name == "Missile") {
+    if (object instanceof Missile) {
       type = "complex"  
     }
 
@@ -113,7 +114,7 @@ function Char() {
         this.life -= object.damage;
         healthBar.changeImg(this.life);
   
-        if (object.constructor.name == "Missile") {
+        if (object instanceof Missile) {
           object.tookDamage(this);
         }
 

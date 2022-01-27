@@ -1,5 +1,6 @@
 import Core from "../../../core/Core.js";
 
+import Char from "../ally/Char.js"
 import Bullet from "../templates/Bullet.js";
 import Explosion from "../other/Explosion.js";
 
@@ -75,7 +76,7 @@ function Missile(x, y) {
     if (!this.isDamaged) {
       if (Core.detectColision(this, object, "complex") && !object.isDead) {
         this.isDamaged = true;
-        if (object.constructor.name == "Char") 
+        if (object instanceof Char) 
           this.life = 0;
         else {
           object.life -= this.damage;

@@ -5,6 +5,8 @@ import Char from "../actors/ally/Char.js";
 import SuperAirship from "../actors/enemy/SuperAirship.js";
 import HealthBar from "../actors/other/HealthBar.js";
 
+import Missile from "../actors/bullets/Missile.js";
+
 import EnemyList from "../other/EnemyList.js";
 import WaveList from "../other/waveList.js";
 
@@ -162,7 +164,7 @@ function Level0() {
       for (let bullet of this.char.bullets) {
         this.boss.tookDamage(bullet);
         for (let bullet2 of this.boss.bullets) {
-          if (bullet2.constructor.name == "Missile")
+          if (bullet2 instanceof Missile)
             bullet2.tookDamage(bullet);
         }
       }

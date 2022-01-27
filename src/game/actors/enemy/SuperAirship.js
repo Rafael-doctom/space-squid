@@ -116,11 +116,11 @@ function SuperAirship(x, y) {
   }
   
   this.renderBullets = function(char) {
-    this.bullets = this.bullets.filter(bullet => !bullet.isDead || (bullet.constructor.name == "Missile" && bullet.deathExplosion.duration > 0));
+    this.bullets = this.bullets.filter(bullet => !bullet.isDead || (bullet instanceof Missile && bullet.deathExplosion.duration > 0));
 
     for (const bullet of this.bullets) {
       if (bullet.x > 0) {
-        if (bullet.constructor.name == "Missile") 
+        if (bullet instanceof Missile)
           bullet.getCurrentTargetPosition(char);
         bullet.render();
       } else {
