@@ -3,3 +3,30 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-color: #e2f3e4;
+}
+
+button {
+  width: 25rem;
+  height: 25rem;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 5rem auto;
+
+  border: none;
+  background-color: transparent;
+  background-image: url(../public/button.png);
+  background-size: cover;
+
+  transition: transform 1s, background-image 1s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-image: url(../public/buttonHover.png);
+  transform: scale(1.1);
+}

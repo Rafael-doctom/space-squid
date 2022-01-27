@@ -8,9 +8,11 @@ const levels = [
   new Level0()
 ];
 
-window.addEventListener("click", () => {
+document.getElementById("game").addEventListener("click", () => {
   if (document.fullscreenElement && document.fullscreenElement.nodeName == 'CANVAS') 
     return;
+
+  document.getElementById("game").style.display = "none";
 
   startGame();
 });
