@@ -24,7 +24,7 @@ Coming soon
 
 ## Demonstration
 
-Coming soon
+[https://augustoravazoli.github.io/space-squid/](https://augustoravazoli.github.io/space-squid/)
 
 ## Technologies
 
