@@ -13,7 +13,7 @@ const touchControl = {
   c: null,
 
   joystick: {
-    out: new Component(24, 24, {idle: "src/assets/img/controls/out.png"}, 2, 46, "image", GameArea),
+    out: new Component(24, 24, {idle: "../../src/assets/img/controls/out.png"}, 2, 46, "image", GameArea),
     in: new Component(8, 8, {idle: "../../src/assets/img/controls/in.png"}, 10, 54, "image", GameArea),
     shot: new Component(16, 16, {idle: "../../src/assets/img/controls/shot.png"}, 105, 50, "image", GameArea),
     pause: new Component(7, 7, {idle: "../../src/assets/img/controls/pause.png"}, 120, 1, "image", GameArea)

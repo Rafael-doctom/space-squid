@@ -11,6 +11,7 @@
   "author": "Augusto Ravazoli",
   "license": "MIT",
   "devDependencies": {
+    "copy-webpack-plugin": "^9.1.0",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",

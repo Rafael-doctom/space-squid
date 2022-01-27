@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -10,6 +11,10 @@ module.exports = {
       title: 'Space Squid',
       template: 'src/index.html'
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+      {from: 'src/assets', to: 'assets'}
+    ]}),
   ],
   output: {
     filename: 'bundle.js',
