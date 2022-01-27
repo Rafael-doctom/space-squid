@@ -12,7 +12,7 @@
 
 ## Status
 
-In development!
+In development! Currently in version 0.1.0
 
 ## Description
 
@@ -20,7 +20,7 @@ A HTML5 space shooter game made in canvas.
 
 ## Screenshot
 
-![](screenshot.png)
+Coming soon
 
 ## Demonstration
 

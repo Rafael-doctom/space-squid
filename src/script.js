@@ -3,6 +3,7 @@ import Core from "./core/Core.js";
 import UI from "./UI/UI.js";
 import Level0 from "./game/levels/level0.js";
 
+import "./style.css"
 
 const levels = [
   new Level0()

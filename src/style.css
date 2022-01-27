@@ -19,7 +19,7 @@ button {
 
   border: none;
   background-color: transparent;
-  background-image: url(../public/button.png);
+  background-image: url(./assets/button.png);
   background-size: cover;
 
   transition: transform 1s, background-image 1s;
@@ -27,6 +27,6 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-image: url(../public/buttonHover.png);
+  background-image: url(./assets/buttonHover.png);
   transform: scale(1.1);
 }
