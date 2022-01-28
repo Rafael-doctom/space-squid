@@ -32,6 +32,7 @@ A HTML5 space shooter game made in canvas.
 - HTML
 - CSS
 - JavaScript
+- Webpack
 
 ## Author
 
