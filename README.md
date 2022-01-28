@@ -20,7 +20,8 @@ A HTML5 space shooter game made in canvas.
 
 ## Screenshot
 
-Coming soon
+![title](https://user-images.githubusercontent.com/79065413/151554678-afff02dd-71ed-4621-8b2b-4852d8f3fec4.png)
+![game](https://user-images.githubusercontent.com/79065413/151554693-5195a6a5-2cf6-46a8-9020-a9e429ecb470.png)
 
 ## Demonstration
 
