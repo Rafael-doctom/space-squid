@@ -1,6 +1,6 @@
 /*
 *
-* @param {Object} object - a object to be animated
+* @param {Object} object - a canvas element to be animated
 * @param {Array of Integers} frames - the order of the frames 
 * @param {Integer} fps - the speed of animation
 *

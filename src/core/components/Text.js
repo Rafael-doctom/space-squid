@@ -1,3 +1,10 @@
+/*
+*
+* @param {Object} gameArea - canvas context
+*
+*/
+
+
 function Text(gameArea) {
   this.fontFace = new FontFace("Retro Gaming", "url(assets/font/RetroGaming.ttf)");
   this.ctx = gameArea.canvas.getContext("2d");

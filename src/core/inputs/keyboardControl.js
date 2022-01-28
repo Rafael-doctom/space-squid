@@ -1,10 +1,10 @@
 const keyboardControl = {
   keysCode: {
-    up: 87, //38,
-    down: 83, //40,
-    left: 65, //37,
-    right: 68, //39,
-    space: 74,//32
+    up: 87, 
+    down: 83, 
+    left: 65, 
+    right: 68, 
+    space: 74,
     enter: 13
   }, 
 

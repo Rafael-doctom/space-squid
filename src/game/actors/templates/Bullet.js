@@ -1,5 +1,19 @@
 import Core from "../../../core/Core.js";
 
+/*
+*
+* Represents a bullet template
+*
+* @param {Number} damage - damage 
+* @param {Number} speed - speed
+* @param {Number} width - width in pixels
+* @param {Number} height - height in pixels
+* @param {Number} x - horizontal position in canvas
+* @param {Number} y - vertical position in canvas
+* @param {String or Object} color - a color or image object path
+*
+*/
+
 function Bullet(damage, speed, width, height, x, y, imgPath) {
   Core.Component.call(this, width, height, imgPath, x, y, "image", Core.GameArea);
 

@@ -9,7 +9,6 @@ const touchControl = {
   touches: [],
   isTouchDevice: false,
   isPressed: false,
-  test: new Component(8, 8, "black", 64, 31, "none", GameArea),
   c: null,
 
   joystick: {
@@ -40,18 +39,10 @@ const touchControl = {
   renderButtons: function(condition) {
     if (!this.isTouchDevice || condition)
       return;
-/*
-    this.buttons.up.update();
-    this.buttons.down.update();
-    this.buttons.left.update();
-    this.buttons.right.update();
-    this.buttons.space.update();
-*/
     this.joystick.out.update()
     this.joystick.in.update();
     this.joystick.shot.update();
     this.joystick.pause.update();
-    //this.test.update();
   },
 
   initEvents: function() {
@@ -109,13 +100,6 @@ const touchControl = {
     const xRatio = 128 / this.c.width;
     const yRatio = 72 / this.c.height;
     let button, touch, buttonActive;
-
-/*
-    if (targetTouches[0]) {
-      this.test.x = Math.floor((targetTouches[0].pageX - this.c.left) * xRatio) - 4;
-      this.test.y = Math.floor((targetTouches[0].pageY - this.c.top) * yRatio) - 4;
-      return;
-    }*/
 
     for (let index = 3; index > -1; --index) {
       button = this.buttons[Object.keys(this.buttons)[index]];

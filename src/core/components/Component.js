@@ -1,12 +1,14 @@
 /*
 *
-* @param {Integer} width - object width in pixels
-* @param {Integer} height - object height in pixels
-* @param {String} color - object color or image path
-* @param {Integer} x - object horizontal position in canvas
-* @param {Integer} y - object vertical position in canvas
+* Represents a canvas element 
+*
+* @param {Number} width - width in pixels
+* @param {Number} height - height in pixels
+* @param {String or Object} color - a color or image object path
+* @param {Number} x - horizontal position in canvas
+* @param {Number} y - vertical position in canvas
 * @param {String} type - object type: image or background
-* @param {Object} myGameArea - object with canvas context
+* @param {Object} gameArea - canvas context
 *
 */
 

@@ -1,7 +1,7 @@
 /*
 *
-* @param {Object} object1 - a object with x and y properties.
-* @param {Object} object2 - another object with x and y properties.
+* @param {Object} object1 - a canvas element
+* @param {Object} object2 - a canvas element
 *
 */
 

@@ -2,6 +2,13 @@ import Core from "../../core/Core.js";
 
 const cursorImgPath = {idle: "assets/img/other/cursor.png"};
 
+/*
+*
+* @param {Object} screens - a object with screens objects with choices and position properties 
+* @param {String} currentScreen - the current screen of the cursor, by default it's "title"
+*
+*/
+
 function Cursor(screens, currentScreen = "title") {
   Core.Component.call(this, 6, 4, cursorImgPath, 42, 34, "image", Core.GameArea);
   this.delay = false;

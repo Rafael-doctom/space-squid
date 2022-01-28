@@ -1,6 +1,12 @@
 import Helicopter from "../actors/enemy/Helicopter.js"
 import Airship from "../actors/enemy/Airship.js";
 
+/*
+*
+* @param {String} type - the type of the enemies
+*
+*/
+
 function EnemyList(type) {
   this.array = [];
   this.type = type;
@@ -58,12 +64,6 @@ function EnemyList(type) {
       this.isAllEnemiesDead = true;
     else
       this.isAllEnemiesDead = false;
-  }
-
-  this.ressurectAllEnemys = function() {    
-    for (let enemy of this.array) {
-      enemy.resurrect();
-    }
   }
 }
 

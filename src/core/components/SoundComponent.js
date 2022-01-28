@@ -1,3 +1,12 @@
+/*
+*
+* @param {String} src - audio file path
+* @param {Number} volume - audio volume, 1.0 by default
+* @param {Boolean} replay - if true, audio will replay indefinitely, by default it's false
+*
+*/
+
+
 function SoundComponent(src, volume = 1.0, replay = false) {
   this.sound = document.createElement("audio");
   this.sound.src = src;

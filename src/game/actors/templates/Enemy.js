@@ -2,6 +2,21 @@ import Core from "../../../core/Core.js";
 
 import Explosion from "../other/Explosion.js";
 
+/*
+*
+* Represents a enemy template
+*
+* @param {Number} speed - speed
+* @param {Number} life - life 
+* @param {Number} damage - damage 
+* @param {Number} width - width in pixels
+* @param {Number} height - height in pixels
+* @param {Number} x - horizontal position in canvas
+* @param {Number} y - vertical position in canvas
+* @param {String or Object} color - a color or image object path
+*
+*/
+
 function Enemy(speed, life, damage, width, height, x, y, imgPath) {
   Core.Component.call(this, width, height, imgPath, x, y, "image", Core.GameArea);
 
