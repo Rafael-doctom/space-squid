@@ -3,6 +3,8 @@ import UI from "./UI/UI.js";
 
 import "./style.css"
 
+window.onload = () => console.log("loaded");
+
 document.getElementById("game").addEventListener("click", () => {
   if (document.fullscreenElement && document.fullscreenElement.nodeName == 'CANVAS') 
     return;

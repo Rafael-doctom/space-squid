@@ -3,7 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
   entry: './src/script.js',
   plugins: [
     new HtmlWebpackPlugin({
@@ -18,8 +17,7 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    publicPath: this.mode === 'production' ? 'space-squid/' : './',
-    path: path.resolve(__dirname, 'docs'),
+    path: path.resolve(__dirname, 'dist'),
     clean: true
   },
   module: {
