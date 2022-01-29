@@ -23,9 +23,11 @@ html, body {
   margin: 5rem auto;
   border: 8px solid #46878f;
   background-color: transparent;
+  transition: all 1s;
 }
 
 #game:hover {
   cursor: url(./assets/img/other/mouse.png), auto;
   transform: scale(1.25);
+  background-color: #94e344;
 }

@@ -50,6 +50,8 @@ const UI = {
   ),
 
   render: function() {
+    Core.GameArea.context.imageSmoothingEnabled = false;
+
     if (this.currentScreen == "game") {
       this.screens.title.music.stop();
       this.screens.game[0].start();
