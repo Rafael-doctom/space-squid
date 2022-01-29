@@ -18,7 +18,7 @@ function Title() {
     this.content.write("Options", Core.GameArea.width / 2, 48, "5px", "#e2f3e4", "center");
     this.content.write("Credits", Core.GameArea.width / 2, 58, "5px", "#e2f3e4", "center");
     this.content.write("© Augusto Ravazoli, 2022", Core.GameArea.width / 2, 70, "2px", "#e2f3e4", "center")
-    this.content.write("v0.1.0", Core.GameArea.width - 10, 70, "2px", "#e2f3e4", "center");
+    this.content.write("v0.1.1", Core.GameArea.width - 10, 70, "2px", "#e2f3e4", "center");
   }
 }
 
