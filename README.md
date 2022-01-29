@@ -17,7 +17,7 @@ In development! Currently in version 0.1.0
 
 ## Description
 
-A HTML5 space shooter game made in canvas.
+Space Squid is a simple HTML5 canvas space shooter game, created without lbraries.
 
 ## Screenshot
 
@@ -26,7 +26,10 @@ A HTML5 space shooter game made in canvas.
 
 ## Demonstration
 
-[https://augustoravazoli.github.io/space-squid/](https://augustoravazoli.github.io/space-squid/)
+Here is a working live demonstration [https://augustoravazoli.github.io/space-squid/](https://augustoravazoli.github.io/space-squid/)
+
+## Features
+- Mobile support
 
 ## Usage
 
@@ -48,10 +51,8 @@ $ npm start
 
 ## Technologies
 
-- HTML
-- CSS
-- JavaScript
-- Webpack
+- [JavaScript](https://www.javascript.com/)
+- [Webpack](https://webpack.js.org/)
 
 ## Author
 
