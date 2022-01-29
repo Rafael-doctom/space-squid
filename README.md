@@ -1,11 +1,14 @@
 # Space-Squid-Game
 
+![button](https://user-images.githubusercontent.com/79065413/151642465-1f7bc234-dbb7-4591-a43b-6911c9008e62.png)
+
 ## Table of contents
 
 - [Status](#status)
 - [Description](#description)
 - [Screenshot](#screenshot)
 - [Demonstration](#demonstrations)
+- [Features](#features)
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Author](#author)
