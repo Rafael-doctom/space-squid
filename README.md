@@ -1,4 +1,4 @@
-# space-squid
+# Space Squid
 
 <img src="https://user-images.githubusercontent.com/79065413/151642826-1a3bddd7-c31b-43ba-bb9f-39b4629b875d.png" width="300" height="300" />
      
