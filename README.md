@@ -1,6 +1,6 @@
 # Space-Squid-Game
 
-![button](https://user-images.githubusercontent.com/79065413/151642465-1f7bc234-dbb7-4591-a43b-6911c9008e62.png =300x300)
+![button](https://user-images.githubusercontent.com/79065413/151642465-1f7bc234-dbb7-4591-a43b-6911c9008e62.png=300x300)
 
 ## Table of contents
 
