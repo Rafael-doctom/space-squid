@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e2f3e4;
+}
+
+.button {
+  width: 25rem;
+  height: 25rem;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 5rem auto;
+
+  border: none;
+  background-color: transparent;
+
+  transition: transform 1s, background-image 1s;
+}
+
+.button--loading {
+  font-family: Retro Gaming;
+  color: #46878f;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.button--active {
+  background-image: url(./assets/button.png);
+  background-size: cover;
+}
+
+.button--active:hover {
+  cursor: pointer;
+  background-image: url(./assets/buttonHover.png);
+  transform: scale(1.1);
+}
