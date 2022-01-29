@@ -1,5 +1,3 @@
-import loading from "../other/loading.js";
-
 /*
 *
 * @param {Object} gameArea - canvas context
@@ -12,7 +10,6 @@ function Text(gameArea) {
   this.fontFace.load().then(font => {
     document.fonts.add(font);
     this.ctx.font = `6px Retro Gaming`;
-    loading.fontCount++;
   })
 
   this.write = function(string, x, y, size, color, position) {

@@ -9,7 +9,6 @@ import angler from "../../../utils/angler.js";
 const imgPath = {
   frame1: "assets/img/attacks/missile1.png",
   frame2: "assets/img/attacks/missile2.png",
-  frame3: "assets/img/char/invisible.png"
 };
 
 function Missile(x, y) {
@@ -30,7 +29,10 @@ function Missile(x, y) {
     } else if (!this.isDead) {
       this.animation.animate(!this.isDamaged, true);
       this.newPos();
-      this.rotate(this.angle);
+      if (this.isDamaged)
+        this.erase();
+      else
+        this.rotate(this.angle);
     }
   }
 
@@ -91,12 +93,9 @@ function Missile(x, y) {
           this.deathSound.play();     
           this.isDead = true;
         }
-
-        this.currentImage = this.images.frame3;
         
         setTimeout(() => {
           this.isDamaged = false; 
-          this.currentImage = this.images.frame1;
         }, 100);
       }     
     }

@@ -52,7 +52,11 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
       if (this.animation)
         this.animation.animate(!this.isDamaged, true);
       this.newPos();
-      this.update();
+      
+      if (this.isDamaged)
+        this.erase();
+      else
+        this.update();
     }
   }
 
@@ -87,12 +91,9 @@ function Enemy(speed, life, damage, width, height, x, y, imgPath) {
           this.deathSound.play();     
           this.isDead = true;
         }
-
-        this.currentImage = this.images.invisible;
         
         setTimeout(() => {
           this.isDamaged = false; 
-          this.currentImage = this.images.idle1;
         }, 100);
       }     
     }

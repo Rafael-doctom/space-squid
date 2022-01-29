@@ -18,7 +18,6 @@ const superAirshipImgPath = {
   noLasersNoDownWing: `${imgPath}noLasersNoDownWing.png`,
   noLasersNoUpWing: `${imgPath}noLasersNoUpWing.png`,
   noLasers: `${imgPath}noLasers.png`,
-  invisible: "assets/img/char/invisible.png"
 };
 
 function SuperAirship(x, y) {
@@ -69,7 +68,11 @@ function SuperAirship(x, y) {
       this.hitBox.cockpit.getCurrentPosition(this.x + 1, this.y + 12);
       this.hitBox.downWing.getCurrentPosition(this.x + this.width - 16, this.y + 24);
       this.newPos();
-      this.update();
+
+      if (this.isDamaged)
+        this.erase();
+      else
+        this.update();
     }
   }
 
@@ -186,7 +189,6 @@ function SuperAirship(x, y) {
   this.tookDamage = function(object) {
     if (!this.isDamaged) {
       let colideCount = 0;
-      //console.log(this.life)
 
       for (let index in this.hitBox) {
         if (Core.detectColision(this.hitBox[index], object) && this.hitBox[index].isActive) {
@@ -209,7 +211,6 @@ function SuperAirship(x, y) {
         }
 
         this.changeState();
-        this.currentImage = this.images.invisible;
         
         setTimeout(() => {
           this.isDamaged = false;

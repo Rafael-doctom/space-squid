@@ -7,7 +7,6 @@ const imgPath = "assets/img/enemy/airship/";
 
 const airshipImgPath = {
   idle1: `${imgPath}idle.png`,
-  invisible: "assets/img/char/invisible.png"
 };
 
 function Airship(x, y) {

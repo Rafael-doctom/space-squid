@@ -9,7 +9,6 @@ const helicopterImgPath = {
   idle1: `${imgPath}idle1.png`,
   idle2: `${imgPath}idle2.png`,
   idle3: `${imgPath}idle3.png`,
-  invisible: "assets/img/char/invisible.png"
 };
 
 function Helicopter(x, y) {
