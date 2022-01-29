@@ -1,6 +1,6 @@
 # Space-Squid-Game
 
-<img src="https://user-images.githubusercontent.com/79065413/151642465-1f7bc234-dbb7-4591-a43b-6911c9008e62.png" width="300" height="300" />
+<img src="![buttonHover](https://user-images.githubusercontent.com/79065413/151642826-1a3bddd7-c31b-43ba-bb9f-39b4629b875d.png)" width="300" height="300" />
      
 ## Table of contents
 
