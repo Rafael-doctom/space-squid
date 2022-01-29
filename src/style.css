@@ -8,7 +8,7 @@ body {
   background-color: #e2f3e4;
 }
 
-button {
+.button {
   width: 25rem;
   height: 25rem;
 
@@ -19,13 +19,23 @@ button {
 
   border: none;
   background-color: transparent;
-  background-image: url(./assets/button.png);
-  background-size: cover;
 
   transition: transform 1s, background-image 1s;
 }
 
-button:hover {
+.button--loading {
+  font-family: Retro Gaming;
+  color: #46878f;
+  text-align: center;
+  font-size: 4rem;
+}
+
+.button--active {
+  background-image: url(./assets/button.png);
+  background-size: cover;
+}
+
+.button--active:hover {
   cursor: pointer;
   background-image: url(./assets/buttonHover.png);
   transform: scale(1.1);

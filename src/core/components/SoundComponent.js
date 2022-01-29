@@ -1,3 +1,5 @@
+import loading from "../other/loading.js";
+
 /*
 *
 * @param {String} src - audio file path
@@ -5,7 +7,6 @@
 * @param {Boolean} replay - if true, audio will replay indefinitely, by default it's false
 *
 */
-
 
 function SoundComponent(src, volume = 1.0, replay = false) {
   this.sound = document.createElement("audio");
@@ -17,6 +18,7 @@ function SoundComponent(src, volume = 1.0, replay = false) {
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
   this.isPlaying = false;
+  this.sound.addEventListener("canplaythrough", () => loading.audioCount++);
 
   this.play = function() {
     this.sound.play();
