@@ -16,7 +16,7 @@
 
 ## Status
 
-In development! Currently in version 0.1.0
+In development! Currently in version 0.1.1
 
 ## Description
 
@@ -26,6 +26,8 @@ Space Squid is a simple HTML5 canvas space shooter game, created without lbrarie
 
 ![title](https://user-images.githubusercontent.com/79065413/151554678-afff02dd-71ed-4621-8b2b-4852d8f3fec4.png)
 ![game](https://user-images.githubusercontent.com/79065413/151554693-5195a6a5-2cf6-46a8-9020-a9e429ecb470.png)
+![2022-01-28-230126_1360x768_scrot](https://user-images.githubusercontent.com/79065413/151643071-63914075-c007-405f-8208-ca6d1e80e26d.png)
+![2022-01-28-230109_1360x768_scrot](https://user-images.githubusercontent.com/79065413/151643073-6bd2f56f-a853-4360-bb8d-912a64427cc8.png)
 
 ## Demonstration
 
